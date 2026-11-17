@@ -23,7 +23,7 @@ rest from their data and say what you decided. Read `reference/lessons.md` befor
 | `templates/update-profile.yml` | Optional weekly refresh workflow (needs a `PROFILE_TOKEN` secret). |
 | `templates/gitignore` | Copy as `.gitignore`. |
 | `reference/configuration.md` | Every `profile.json` key. |
-| `reference/styles/*.png` | Screenshots of both themes, to show the user in step 3. |
+| `reference/styles/<theme>-<dark|light>.jpg` | Screenshots of the six themes, to show the user in step 3. |
 | `reference/lessons.md` | Known pitfalls. |
 
 `<skill>` below means the folder that holds this file.
@@ -54,18 +54,37 @@ Never invent features, numbers or job titles.
 
 ## 3. Configuration questions
 
-### Round 1: style (one AskUserQuestion call)
+### Round 1: style
 
-Show `reference/styles/terminal-dark.png` and `reference/styles/glass-dark.png` first (read them so
-the user sees them), then ask. Recommendation first, marked "(Recommended)":
+People like a theme that looks like the system or tool they use every day. Six themes exist:
 
-1. **Style reference**: `terminal` (windows with a title bar, shell prompts as headings, one accent
-   color; suits developers, tooling, Linux) / `glass` (dark glass cards with color glows, big gradient
-   name; suits product and web profiles).
-2. **Accent color** (terminal only): cyan / green / amber / magenta.
-3. **Language** of the README: English / Spanish (the generator supports `en` and `es`).
-4. **Right side of the header**: an animated GIF / a still image / a neofetch-style info panel
-   (`fetch`, terminal look) / nothing.
+| `theme` | Looks like | Suits |
+|---|---|---|
+| `terminal` | Terminal window, shell prompts as headings, one accent; Linux distro variants | Linux users, tooling, backend |
+| `editor` | Code editor: tabs, line numbers, syntax colors, data written as code | Anyone living in VS Code-like editors |
+| `classic` | 90s desktop: gray bevels, navy title bar, block progress bars | Retro fans; stands out the most |
+| `win11` | Modern Windows: flat rounded windows, caption buttons, system accent | Windows users |
+| `macos` | Mac windows: traffic lights, unified title bar, system blue | Mac users |
+| `glass` | Dark glass cards with color glows, big gradient name | Product, web and design profiles |
+
+Read `reference/styles/<theme>-dark.jpg` for the candidates so the user sees them. Then ask in one
+AskUserQuestion call (an option list holds at most 4 entries, so the style is split in two steps):
+
+1. **Style family**: Terminal / Code editor / Operating system window / Glass. Recommend from what
+   step 2 shows: Linux tooling suggests terminal, mostly web code suggests editor.
+2. **Language** of the README: English / Spanish (`en`, `es`).
+3. **Right side of the header**: an animated GIF / a still image / a neofetch-style info panel
+   (`fetch`) / nothing.
+
+Then one follow-up call, only for the family that needs it:
+
+- Operating system window → which one: Classic (90s) / Windows 11 / macOS.
+- Terminal → which Linux they use, as the accent: Ubuntu / Arch / Debian / Other. On "Other", offer
+  Fedora / Mint / CachyOS / a plain color (cyan, green, amber or magenta). A distro sets its color and
+  shows `user@<distro>` in the title bar.
+
+Accents are keys of `ACCENTS` in `generate.py`; any of them works with `terminal`, `editor`, `win11`
+and `macos`. `classic` and `glass` have fixed palettes.
 
 ### Round 2: content (one AskUserQuestion call, after drafting from step 2)
 

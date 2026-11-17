@@ -9,7 +9,7 @@
     {
       "name": "github-profile",
       "source": "./plugin",
-      "description": "Design, preview and publish a GitHub profile README: SVG cards with live stats, light and dark themes, and an optional animated header from your own image or GIF."
+      "description": "Design, preview and publish a GitHub profile README: SVG cards with live stats, six themes inspired by developer tools and operating systems, light and dark modes, and an optional animated header from your own image or GIF."
     }
   ]
 }

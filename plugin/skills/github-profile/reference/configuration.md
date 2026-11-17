@@ -18,8 +18,9 @@ without a UTF-8 BOM.
 
 | Key | Values | Default |
 |---|---|---|
-| `theme` | `terminal`, `glass` | `glass` |
-| `accent` | `cyan`, `green`, `amber`, `magenta` (terminal only) | `cyan` |
+| `theme` | `terminal`, `editor`, `classic`, `win11`, `macos`, `glass` | `glass` |
+| `accent` | a color (`cyan`, `green`, `amber`, `magenta`), a Linux distro (`ubuntu`, `arch`, `debian`, `fedora`, `mint`, `cachyos`) or a system color (`vscode`, `win`, `mac`). Used by terminal, editor, win11 and macos | terminal `cyan`, editor `vscode`, win11 `win`, macos `mac` |
+| `host` | host shown as `user@host` in the terminal title bar | the distro of `accent`, else `github` |
 | `lang` | `en`, `es` | `en` |
 | `tiles` | four of `repos`, `contributions`, `prs`, `stars`, `followers`, `production` | `repos`, `contributions`, `prs`, `production` |
 

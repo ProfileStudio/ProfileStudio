@@ -3,7 +3,7 @@
 **English** · [Español](README.es.md)
 
 Generate a polished GitHub profile README from your real GitHub data: SVG cards with live stats,
-light and dark themes, and an optional **animated header** made from your own image or GIF. A
+six themes inspired by the tools developers use every day, light and dark modes, and an optional **animated header** made from your own image or GIF. A
 Claude Code agent asks you a few design questions, builds a preview and publishes it when you
 approve. No Claude? The generator is a single Python script with no dependencies.
 
@@ -21,14 +21,20 @@ approve. No Claude? The generator is a single Python script with no dependencies
 
 [github.com/Rixmerz](https://github.com/Rixmerz): terminal theme, English. Header pixel art by Hal4822.
 
-## Two styles
+## Six themes, inspired by the tools you use every day
 
-| Terminal | Glass |
-|---|---|
-| <img src="plugin/skills/github-profile/reference/styles/terminal-dark.png" alt="Terminal style, dark theme"> | <img src="plugin/skills/github-profile/reference/styles/glass-dark.png" alt="Glass style, dark theme"> |
-| <img src="plugin/skills/github-profile/reference/styles/terminal-light.png" alt="Terminal style, light theme"> | <img src="plugin/skills/github-profile/reference/styles/glass-light.png" alt="Glass style, light theme"> |
+| Theme | Dark | Light |
+|---|---|---|
+| **terminal** · shell prompts, one accent, Linux distro variants | <img src="plugin/skills/github-profile/reference/styles/terminal-dark.jpg" alt="Terminal theme, dark"> | <img src="plugin/skills/github-profile/reference/styles/terminal-light.jpg" alt="Terminal theme, light"> |
+| **editor** · tabs, line numbers, your data written as code | <img src="plugin/skills/github-profile/reference/styles/editor-dark.jpg" alt="Editor theme, dark"> | <img src="plugin/skills/github-profile/reference/styles/editor-light.jpg" alt="Editor theme, light"> |
+| **classic** · 90s desktop windows and block progress bars | <img src="plugin/skills/github-profile/reference/styles/classic-dark.jpg" alt="Classic theme, dark"> | <img src="plugin/skills/github-profile/reference/styles/classic-light.jpg" alt="Classic theme, light"> |
+| **win11** · flat rounded windows, caption buttons | <img src="plugin/skills/github-profile/reference/styles/win11-dark.jpg" alt="Windows 11 theme, dark"> | <img src="plugin/skills/github-profile/reference/styles/win11-light.jpg" alt="Windows 11 theme, light"> |
+| **macos** · traffic lights, unified title bar | <img src="plugin/skills/github-profile/reference/styles/macos-dark.jpg" alt="macOS theme, dark"> | <img src="plugin/skills/github-profile/reference/styles/macos-light.jpg" alt="macOS theme, light"> |
+| **glass** · dark glass cards with color glows | <img src="plugin/skills/github-profile/reference/styles/glass-dark.jpg" alt="Glass theme, dark"> | <img src="plugin/skills/github-profile/reference/styles/glass-light.jpg" alt="Glass theme, light"> |
 
-Every card follows the viewer's GitHub theme on its own.
+Every card follows the viewer's GitHub theme on its own. The terminal theme also comes in Linux
+distribution variants (`ubuntu`, `arch`, `debian`, `fedora`, `mint`, `cachyos`): their color, and
+`you@archlinux: ~` in the title bar. Themes are inspired by these systems and use no logos.
 
 ## What you get
 
@@ -53,7 +59,7 @@ Every card follows the viewer's GitHub theme on its own.
 Then just say **"set up my GitHub profile"**. The agent:
 
 1. Checks `gh`, Python and git, and reads your public GitHub data.
-2. Asks about style (terminal or glass), accent color, language and header media.
+2. Asks about style (six themes, including Linux distro variants), language and header media.
 3. Proposes your four best projects, the stats to show and every text, and asks you to confirm.
 4. Turns your GIF or image into a header that works in both themes.
 5. Builds a local preview and publishes only what you approve.

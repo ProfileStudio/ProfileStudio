@@ -12,6 +12,13 @@ Collected while building the first profile with this generator. Each one cost a 
   two `<img width="49.5%">` in a row; each SVG carries a 6 px transparent margin as the gutter.
 - Images are cached for a few minutes after a push. Hard reload before reporting a bug.
 
+## Themes
+
+- People pick the theme of the system or editor they use daily. Name themes generically
+  (`editor`, `classic`) and draw no logos: they are inspired by products, not affiliated with them.
+- An option list in AskUserQuestion holds at most 4 entries. With more themes, ask the family first
+  (terminal, editor, OS window, glass) and the variant second.
+
 ## Text in SVG
 
 - SVG text never wraps. The generator wraps by estimated width (0.55 em sans, 0.6 em bold,
