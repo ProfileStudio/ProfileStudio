@@ -23,7 +23,7 @@ rest from their data and say what you decided. Read `reference/lessons.md` befor
 | `templates/update-profile.yml` | Optional weekly refresh workflow (needs a `PROFILE_TOKEN` secret). |
 | `templates/gitignore` | Copy as `.gitignore`. |
 | `reference/configuration.md` | Every `profile.json` key. |
-| `reference/styles/<theme>-<dark|light>.jpg` | Screenshots of the five themes, to show the user in step 3. |
+| `reference/styles/<theme>-<dark|light>.jpg` | Screenshots of the ten themes, to show the user in step 3. |
 | `reference/lessons.md` | Known pitfalls. |
 
 `<skill>` below means the folder that holds this file.
@@ -56,34 +56,43 @@ Never invent features, numbers or job titles.
 
 ### Round 1: style
 
-People like a theme that looks like the system or tool they use every day. Five themes exist:
+People like a theme that looks like the system or tool they use every day. Ten themes exist:
 
 | `theme` | Looks like | Suits |
 |---|---|---|
 | `terminal` | Terminal window, shell prompts as headings, one accent; Linux distro variants | Linux users, tooling, backend |
 | `editor` | Code editor: tabs, line numbers, syntax colors, data written as code | Anyone living in VS Code-like editors |
+| `ide` | Full IDE: run toolbar, tool window strip, Kotlin-style code | Java, Kotlin, Python IDE users |
+| `vim` | Modal editor: mode in the status line, relative line numbers, markdown | Vim and Neovim users |
+| `notebook` | Notebook: numbered cells, code input and output | Data science, Python, students |
 | `classic` | 90s desktop: gray bevels, navy title bar, block progress bars | Retro fans; stands out the most |
 | `win11` | Modern Windows: flat rounded windows, caption buttons, system accent | Windows users |
 | `macos` | Mac windows: traffic lights, unified title bar, system blue | Mac users |
+| `handheld` | 90s handheld console screen, four greens; the portrait is recolored | Pixel-art headers, game devs |
+| `crt` | Phosphor screen, scan lines and glow, amber or green | Retro computing fans |
 
 Read `reference/styles/<theme>-dark.jpg` for the candidates so the user sees them. Then ask in one
 AskUserQuestion call (an option list holds at most 4 entries, so the style is split in two steps):
 
-1. **Style family**: Terminal / Code editor / Operating system window. Recommend from what
-   step 2 shows: Linux tooling suggests terminal, mostly web code suggests editor.
+1. **Style family**: Terminal / Code editor / Operating system window / Retro. Recommend from
+   what step 2 shows: Linux tooling suggests terminal, mostly web code suggests editor, notebooks
+   suggest the notebook theme, a pixel-art header suggests retro.
 2. **Language** of the README: English / Spanish (`en`, `es`).
 3. **Right side of the header**: an animated GIF / a still image / a neofetch-style info panel
    (`fetch`) / nothing.
 
 Then one follow-up call, only for the family that needs it:
 
+- Code editor → which one: Editor (VS Code-like) / IDE / Vim / Notebook.
 - Operating system window → which one: Classic (90s) / Windows 11 / macOS.
+- Retro → Handheld console / CRT amber / CRT green.
 - Terminal → which Linux they use, as the accent: Ubuntu / Arch / Debian / Other. On "Other", offer
   Fedora / Mint / CachyOS / a plain color (cyan, green, amber or magenta). A distro sets its color and
   shows `user@<distro>` in the title bar.
 
-Accents are keys of `ACCENTS` in `generate.py`; any of them works with `terminal`, `editor`, `win11`
-and `macos`. `classic` has a fixed palette.
+Accents are keys of `ACCENTS` in `generate.py`; any of them works with `terminal`, `editor`, `ide`,
+`vim`, `notebook`, `win11` and `macos`. `crt` takes a phosphor (`amber`, `green`). `classic` and
+`handheld` have a fixed palette.
 
 ### Round 2: content (one AskUserQuestion call, after drafting from step 2)
 

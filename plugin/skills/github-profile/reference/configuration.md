@@ -18,8 +18,8 @@ without a UTF-8 BOM.
 
 | Key | Values | Default |
 |---|---|---|
-| `theme` | `terminal`, `editor`, `classic`, `win11`, `macos` | `terminal` |
-| `accent` | a color (`cyan`, `green`, `amber`, `magenta`), a Linux distro (`ubuntu`, `arch`, `debian`, `fedora`, `mint`, `cachyos`) or a system color (`vscode`, `win`, `mac`). Used by terminal, editor, win11 and macos | terminal `cyan`, editor `vscode`, win11 `win`, macos `mac` |
+| `theme` | `terminal`, `editor`, `ide`, `vim`, `notebook`, `classic`, `win11`, `macos`, `handheld`, `crt` | `terminal` |
+| `accent` | a color (`cyan`, `green`, `amber`, `magenta`), a Linux distro (`ubuntu`, `arch`, `debian`, `fedora`, `mint`, `cachyos`) or a system color (`vscode`, `ide`, `notebook`, `win`, `mac`). `crt` uses it as phosphor (`amber`, `green`, `cyan`, `magenta`). `classic` and `handheld` ignore it | terminal `cyan`, editor `vscode`, ide `ide`, vim `green`, notebook `notebook`, win11 `win`, macos `mac`, crt `amber` |
 | `host` | host shown as `user@host` in the terminal title bar | the distro of `accent`, else `github` |
 | `lang` | `en`, `es` | `en` |
 | `tiles` | four of `repos`, `contributions`, `prs`, `stars`, `followers`, `production` | `repos`, `contributions`, `prs`, `production` |

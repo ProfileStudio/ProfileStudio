@@ -3,7 +3,7 @@
 **English** · [Español](README.es.md)
 
 Generate a polished GitHub profile README from your real GitHub data: SVG cards with live stats,
-five themes inspired by the tools developers use every day, light and dark modes, and an optional **animated header** made from your own image or GIF. A
+ten themes inspired by the tools developers use every day, light and dark modes, and an optional **animated header** made from your own image or GIF. A
 Claude Code agent asks you a few design questions, builds a preview and publishes it when you
 approve. No Claude? The generator is a single Python script with no dependencies.
 
@@ -17,7 +17,7 @@ approve. No Claude? The generator is a single Python script with no dependencies
 
 [github.com/WaltherMoraRivera](https://github.com/WaltherMoraRivera): terminal theme, Spanish, animated pixel-art portrait.
 
-## Five themes, inspired by the tools you use every day
+## Ten themes, inspired by the tools you use every day
 
 | Theme | Dark | Light |
 |---|---|---|
@@ -26,10 +26,16 @@ approve. No Claude? The generator is a single Python script with no dependencies
 | **classic** · 90s desktop windows and block progress bars | <img src="plugin/skills/github-profile/reference/styles/classic-dark.jpg" alt="Classic theme, dark"> | <img src="plugin/skills/github-profile/reference/styles/classic-light.jpg" alt="Classic theme, light"> |
 | **win11** · flat rounded windows, caption buttons | <img src="plugin/skills/github-profile/reference/styles/win11-dark.jpg" alt="Windows 11 theme, dark"> | <img src="plugin/skills/github-profile/reference/styles/win11-light.jpg" alt="Windows 11 theme, light"> |
 | **macos** · traffic lights, unified title bar | <img src="plugin/skills/github-profile/reference/styles/macos-dark.jpg" alt="macOS theme, dark"> | <img src="plugin/skills/github-profile/reference/styles/macos-light.jpg" alt="macOS theme, light"> |
+| **ide** · tool window strip, run toolbar, Kotlin-style code | <img src="plugin/skills/github-profile/reference/styles/ide-dark.jpg" alt="IDE theme, dark"> | <img src="plugin/skills/github-profile/reference/styles/ide-light.jpg" alt="IDE theme, light"> |
+| **vim** · mode in the status line, relative line numbers, markdown buffer | <img src="plugin/skills/github-profile/reference/styles/vim-dark.jpg" alt="Vim theme, dark"> | <img src="plugin/skills/github-profile/reference/styles/vim-light.jpg" alt="Vim theme, light"> |
+| **notebook** · numbered cells, code input and its output | <img src="plugin/skills/github-profile/reference/styles/notebook-dark.jpg" alt="notebook theme, dark"> | <img src="plugin/skills/github-profile/reference/styles/notebook-light.jpg" alt="notebook theme, light"> |
+| **handheld** · 90s handheld console screen: four greens, portrait recolored | <img src="plugin/skills/github-profile/reference/styles/handheld-dark.jpg" alt="handheld theme, dark"> | <img src="plugin/skills/github-profile/reference/styles/handheld-light.jpg" alt="handheld theme, light"> |
+| **crt** · phosphor screen with scan lines and glow, amber or green | <img src="plugin/skills/github-profile/reference/styles/crt-dark.jpg" alt="CRT theme, dark"> | <img src="plugin/skills/github-profile/reference/styles/crt-light.jpg" alt="CRT theme, light"> |
 
 Every card follows the viewer's GitHub theme on its own. The terminal theme also comes in Linux
 distribution variants (`ubuntu`, `arch`, `debian`, `fedora`, `mint`, `cachyos`): their color, and
-`you@archlinux: ~` in the title bar. Themes are inspired by these systems and use no logos.
+`you@archlinux: ~` in the title bar; `crt` takes `amber` or `green` phosphor. `classic` and `handheld`
+keep a fixed palette. Themes are inspired by these systems and use no logos.
 
 ## What you get
 
@@ -54,7 +60,7 @@ distribution variants (`ubuntu`, `arch`, `debian`, `fedora`, `mint`, `cachyos`):
 Then just say **"set up my GitHub profile"**. The agent:
 
 1. Checks `gh`, Python and git, and reads your public GitHub data.
-2. Asks about style (five themes, including Linux distro variants), language and header media.
+2. Asks about style (ten themes, including Linux distro variants), language and header media.
 3. Proposes your four best projects, the stats to show and every text, and asks you to confirm.
 4. Turns your GIF or image into a header that works in both themes.
 5. Builds a local preview and publishes only what you approve.

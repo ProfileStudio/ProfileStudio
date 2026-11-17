@@ -17,7 +17,11 @@ Collected while building the first profile with this generator. Each one cost a 
 - People pick the theme of the system or editor they use daily. Name themes generically
   (`editor`, `classic`) and draw no logos: they are inspired by products, not affiliated with them.
 - An option list in AskUserQuestion holds at most 4 entries. With more themes, ask the family first
-  (terminal, editor, OS window) and the variant second.
+  (terminal, code editor, OS window, retro) and the variant second.
+- `handheld` and `crt` recolor the header image to their palette with an SVG filter, so any
+  portrait fits; their body font is monospace, which the width estimate accounts for.
+- A blinking cursor drawn as a `<tspan>` follows the text whatever font the viewer has; a
+  rectangle placed by estimated width drifts.
 
 ## Text in SVG
 
