@@ -17,7 +17,7 @@ Collected while building the first profile with this generator. Each one cost a 
 - People pick the theme of the system or editor they use daily. Name themes generically
   (`editor`, `classic`) and draw no logos: they are inspired by products, not affiliated with them.
 - An option list in AskUserQuestion holds at most 4 entries. With more themes, ask the family first
-  (terminal, editor, OS window, glass) and the variant second.
+  (terminal, editor, OS window) and the variant second.
 
 ## Text in SVG
 

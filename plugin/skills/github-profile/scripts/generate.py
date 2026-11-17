@@ -30,12 +30,12 @@ ASSETS = ROOT / "assets"
 W = 840          # width of every SVG, margin included
 M = 6            # transparent margin around each card
 CARD_W = W // 2  # width of each card in pairs (projects)
-PX = M + 16      # start of the inner panel inside the frame
-IX = PX + 24     # start of the content inside the panel
+PX = M + 16      # top of the content area inside the frame
+IX = PX + 24     # left edge of the content
 IW = W - 2 * IX  # content width of full-width cards
 BAR = 28         # height of the title bar of windowed themes
 
-THEME = "glass"  # set from profile.json; see THEMES
+THEME = "terminal"  # set from profile.json; see THEMES
 ACCENT = "cyan"  # key of ACCENTS: a color, a Linux distribution or a system color
 S = {}           # interface strings for the chosen language
 
@@ -83,45 +83,9 @@ STRINGS = {
 }
 
 # ───────────────────────── themes ─────────────────────────
-# Light colors by default, dark ones under prefers-color-scheme. GitHub serves README
+# Every theme draws a window with a title bar. Light colors by default, dark ones under
+# prefers-color-scheme. GitHub serves README
 # images as <img>, so the SVG follows the viewer's theme on its own.
-
-GLASS_STYLE = """<style>
-.f{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif}
-.m{font-family:ui-monospace,SFMono-Regular,"SF Mono",Consolas,"Liberation Mono",monospace}
-.frame{fill:#f6f8fa;stroke:#bcd0e6}
-.panel{fill:#fff;fill-opacity:.72;stroke:#c3d4e8}
-.pline{fill:none;stroke:#c3d4e8}
-.tile{fill:#fff;fill-opacity:.85;stroke:#c3d4e8}
-.chip{fill:#eef3f9;stroke:#cdd9e6}
-.pill{fill:#fff;fill-opacity:.6;stroke:#7fb2f0}
-.track{fill:#e2e9f1}.trk{stroke:#e2e9f1}
-.t1{fill:#1f2328}.t2{fill:#59636e}.ac{fill:#0969da}
-.c-blue{fill:#0969da}.c-cyan{fill:#0e7490}.c-purple{fill:#8250df}.c-green{fill:#1a7f37}
-.n1{stop-color:#0969da}.n2{stop-color:#0e7490}
-.sep{stroke:#d0dbe8}
-.d-prod{fill:#1a7f37}.d-proto{fill:#bf8700}
-.gba{stop-color:#3b82f6;stop-opacity:.16}.gbb{stop-color:#3b82f6;stop-opacity:0}
-.gga{stop-color:#22c55e;stop-opacity:.10}.ggb{stop-color:#22c55e;stop-opacity:0}
-.gta{stop-color:#14b8a6;stop-opacity:.14}.gtb{stop-color:#14b8a6;stop-opacity:0}
-.gpa{stop-color:#8b5cf6;stop-opacity:.12}.gpb{stop-color:#8b5cf6;stop-opacity:0}
-.h0{fill:#e6ebf1}.h1{fill:#c3dcff}.h2{fill:#86b8ff}.h3{fill:#4a90ee}.h4{fill:#1f6feb}
-@media (prefers-color-scheme:dark){
-.frame{fill:#0d131b;stroke:#2a4a70}
-.panel{fill:#070a0f;fill-opacity:.78;stroke:#26466b}
-.pline{stroke:#26466b}
-.tile{fill:#090d13;fill-opacity:.9;stroke:#2b4f78}
-.chip{fill:#0e151e;stroke:#27415f}
-.pill{fill:#0b121b;fill-opacity:.7;stroke:#2f6bb3}
-.track{fill:#1d242e}.trk{stroke:#1d242e}
-.t1{fill:#f0f6fc}.t2{fill:#9198a1}.ac{fill:#58a6ff}
-.c-blue{fill:#58a6ff}.c-cyan{fill:#22d3ee}.c-purple{fill:#a371f7}.c-green{fill:#3fb950}
-.n1{stop-color:#7dd3fc}.n2{stop-color:#38bdf8}
-.sep{stroke:#26364a}
-.d-prod{fill:#3fb950}.d-proto{fill:#d29922}
-.gba{stop-opacity:.38}.gga{stop-opacity:.22}.gta{stop-opacity:.30}.gpa{stop-opacity:.26}
-.h0{fill:#1b222c}.h1{fill:#0e3a73}.h2{fill:#1456b3}.h3{fill:#2f81f7}.h4{fill:#79c0ff}}
-</style>"""
 
 # Terminal theme: windows with a title bar, monospace prompts, one accent color.
 ACCENTS = {  # (light, dark)
@@ -141,7 +105,6 @@ TERMINAL_STYLE = """<style>
 .f{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif}
 .m{font-family:ui-monospace,SFMono-Regular,"SF Mono","JetBrains Mono",Consolas,"Liberation Mono",monospace}
 .frame{fill:#fbfbf8;stroke:#d6d3c9}.bar{fill:#efede6}
-.panel{fill:none;stroke:none}.pline{fill:none;stroke:none}
 .tile{fill:#f4f2ec;stroke:#dcd8cc}
 .chip{fill:#f1efe8;stroke:#d6d3c9}
 .pill{fill:none;stroke:@AL@}
@@ -170,7 +133,6 @@ EDITOR_STYLE = """<style>
 .f{font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,"Noto Sans",Helvetica,Arial,sans-serif}
 .m{font-family:"Cascadia Code","Fira Code",ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace}
 .frame{fill:#ffffff;stroke:#e5e5e5}.bar{fill:#f3f3f3}.tab{fill:#ffffff}
-.panel{fill:none;stroke:none}.pline{fill:none;stroke:none}
 .tile{fill:#f8f8f8;stroke:#e5e5e5}.chip{fill:#f3f3f3;stroke:#e5e5e5}.pill{fill:none;stroke:@AL@}
 .track{fill:#e8e8e8}.trk{stroke:#e8e8e8}
 .t1{fill:#1f1f1f}.t2{fill:#6e7681}.ac{fill:@AL@}
@@ -196,7 +158,6 @@ CLASSIC_STYLE = """<style>
 .f{font-family:Tahoma,"MS Sans Serif","Microsoft Sans Serif","Segoe UI",Geneva,Verdana,sans-serif}
 .m{font-family:"Lucida Console","Courier New",Consolas,monospace}
 .frame{fill:#c0c0c0;stroke:none}
-.panel{fill:none;stroke:none}.pline{fill:none;stroke:none}
 .tile{fill:#ffffff;stroke:none}.chip{fill:#c0c0c0;stroke:none}.pill{fill:#c0c0c0;stroke:none}
 .track{fill:#ffffff}.trk{stroke:#ffffff}
 .t1{fill:#000000}.t2{fill:#404040}.ac{fill:#000080}
@@ -212,7 +173,6 @@ WIN11_STYLE = """<style>
 .f{font-family:"Segoe UI Variable Text","Segoe UI",-apple-system,BlinkMacSystemFont,"Noto Sans",Helvetica,Arial,sans-serif}
 .m{font-family:"Cascadia Mono",Consolas,ui-monospace,SFMono-Regular,monospace}
 .frame{fill:#f3f3f3;stroke:#d9d9d9}.bar{fill:#f3f3f3}
-.panel{fill:none;stroke:none}.pline{fill:none;stroke:none}
 .tile{fill:#ffffff;stroke:#e5e5e5}.chip{fill:#ffffff;stroke:#e0e0e0}.pill{fill:#ffffff;stroke:#d0d0d0}
 .track{fill:#d6d6d6}.trk{stroke:#d6d6d6}
 .t1{fill:#1b1b1b}.t2{fill:#5f5f5f}.ac{fill:@AL@}
@@ -236,7 +196,6 @@ MACOS_STYLE = """<style>
 .f{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif}
 .m{font-family:"SF Mono",ui-monospace,Menlo,Monaco,Consolas,monospace}
 .frame{fill:#ffffff;stroke:#d1d1d6}.bar{fill:#ececec}
-.panel{fill:none;stroke:none}.pline{fill:none;stroke:none}
 .tile{fill:#f5f5f7;stroke:#e5e5ea}.chip{fill:#f2f2f7;stroke:#e5e5ea}.pill{fill:none;stroke:@AL@}
 .track{fill:#e5e5ea}.trk{stroke:#e5e5ea}
 .t1{fill:#1d1d1f}.t2{fill:#6e6e73}.ac{fill:@AL@}
@@ -254,27 +213,17 @@ MACOS_STYLE = """<style>
 .h0{fill:#2c2c2e}.h1,.h2,.h3,.h4{fill:@AD@}}
 </style>"""
 
-THEMES = ("glass", "terminal", "editor", "classic", "win11", "macos")
+THEMES = ("terminal", "editor", "classic", "win11", "macos")
 STYLES = {"terminal": TERMINAL_STYLE, "editor": EDITOR_STYLE, "classic": CLASSIC_STYLE,
           "win11": WIN11_STYLE, "macos": MACOS_STYLE}
 
-GLOW_IDS = (("gb", 0.10, 0.0), ("gg", 0.60, 0.0), ("gt", 0.98, 1.0), ("gp", 0.38, 1.05))
-
-
 def style():
-    if THEME == "glass":
-        return GLASS_STYLE
     light, dark = ACCENTS.get(ACCENT, ACCENTS["cyan"])
     return STYLES[THEME].replace("@AL@", light).replace("@AD@", dark)
 
 
 def term():
     return THEME == "terminal"
-
-
-def windowed():
-    """Every theme but glass draws a window with a title bar."""
-    return THEME != "glass"
 
 
 def mono():
@@ -365,10 +314,10 @@ def wtitle(kind, human, repo=""):
     return human
 
 
-def shell(w, h, rx=16, title=""):
-    """Card frame for the active theme. Returns (defs, body)."""
+def shell(w, h, title=""):
+    """Window frame of the active theme, with its title bar. Returns (defs, body)."""
     fw, fh = w - 2 * M, h - 2 * M
-    rx = {"glass": rx, "terminal": 10, "editor": 6, "classic": 0, "win11": 8, "macos": 10}[THEME]
+    rx = {"terminal": 10, "editor": 6, "classic": 0, "win11": 8, "macos": 10}[THEME]
     defs = f'<clipPath id="fc"><rect x="{M}" y="{M}" width="{fw}" height="{fh}" rx="{rx}"/></clipPath>'
     frame = f'<rect x="{M}.5" y="{M}.5" width="{fw - 1}" height="{fh - 1}" rx="{rx}" class="frame" stroke-width="1"/>'
     cy = M + BAR // 2
@@ -403,29 +352,12 @@ def shell(w, h, rx=16, title=""):
             body += t(bx + 8, M + 17, glyph, 11, "t1", "700", anchor="middle")
         return defs, body
 
-    if THEME == "win11":
-        body = frame + f'<rect x="{M + 14}" y="{cy - 7}" width="14" height="14" rx="3" class="ac"/>'
-        body += t(M + 38, cy + 4, title, 12, "t1") if title else ""
-        for i, glyph in enumerate(("✕", "▢", "—")):
-            body += t(w - M - 24 - i * 44, cy + 4, glyph, 11, "t2", anchor="middle")
-        return defs, body
-
-    defs += "".join(
-        f'<radialGradient id="{i}"><stop offset="0" class="{i}a"/><stop offset="1" class="{i}b"/></radialGradient>'
-        for i, _, _ in GLOW_IDS
-    )
-    rx_, ry_ = min(w * 0.30, 280), h * 0.85
-    glows = "".join(
-        f'<ellipse cx="{w * fx:.0f}" cy="{h * fy:.0f}" rx="{rx_:.0f}" ry="{ry_:.0f}" fill="url(#{i})"/>'
-        for i, fx, fy in GLOW_IDS
-    )
-    return defs, frame + f'<g clip-path="url(#fc)">{glows}</g>'
-
-
-def panel(h):
-    if THEME != "glass":
-        return ""
-    return f'<rect x="{PX}.5" y="{PX}.5" width="{W - 2 * PX - 1}" height="{h - 1}" rx="12" class="panel" stroke-width="1"/>'
+    # win11
+    body = frame + f'<rect x="{M + 14}" y="{cy - 7}" width="14" height="14" rx="3" class="ac"/>'
+    body += t(M + 38, cy + 4, title, 12, "t1") if title else ""
+    for i, glyph in enumerate(("✕", "▢", "—")):
+        body += t(w - M - 24 - i * 44, cy + 4, glyph, 11, "t2", anchor="middle")
+    return defs, body
 
 
 def titles(top, title, subtitle, cmd, ident):
@@ -443,8 +375,8 @@ def titles(top, title, subtitle, cmd, ident):
         )
     if THEME == "classic":
         return t(IX, top + 40, title, 16, "t1", "700") + t(IX, top + 60, subtitle, 12, "t2")
-    size, weight = (22, "600") if THEME == "win11" else (22, "700") if THEME == "macos" else (24, "800")
-    return t(IX, top + 38, title, size, "t1", weight) + t(IX, top + 60, subtitle, 12.5, "t2", "600")
+    weight = "600" if THEME == "win11" else "700"
+    return t(IX, top + 38, title, 22, "t1", weight) + t(IX, top + 60, subtitle, 12.5, "t2", "600")
 
 
 def layout_chips(labels, x0, max_x, size=12, pad=9, gap=6, quoted=False):
@@ -462,7 +394,7 @@ def layout_chips(labels, x0, max_x, size=12, pad=9, gap=6, quoted=False):
 
 def draw_chips(items, y0, h=24, row_gap=6, size=12, pill=False, tcls="t1"):
     parts = []
-    rx = {"terminal": 4, "editor": 3, "classic": 0, "win11": 4, "macos": h / 2}.get(THEME, h / 2 if pill else 6)
+    rx = {"terminal": 4, "editor": 3, "classic": 0, "win11": 4, "macos": h / 2}[THEME]
     for label, x, row, w in items:
         y = y0 + row * (h + row_gap)
         text, cls_text = label, tcls
@@ -482,7 +414,7 @@ def tile(x, y, w, h):
     """Background of a stat tile."""
     if THEME == "classic":
         return f'<rect x="{x:.0f}" y="{y}" width="{w:.0f}" height="{h}" class="tile"/>' + bevel(round(x), y, round(w), h, raised=False)
-    rx = {"terminal": 6, "editor": 3, "win11": 6, "macos": 10}.get(THEME, 14)
+    rx = {"terminal": 6, "editor": 3, "win11": 6, "macos": 10}[THEME]
     return f'<rect x="{x + 0.5:.1f}" y="{y + 0.5}" width="{w:.1f}" height="{h}" rx="{rx}" class="tile" stroke-width="1"/>'
 
 
@@ -494,7 +426,7 @@ def milestone(v):
 
 
 def bar(x, y, w, h, frac, cls=None, color=None):
-    """Progress bar: segmented blocks (terminal, classic), flat (editor) or rounded (others)."""
+    """Progress bar: segmented blocks (terminal, classic), flat (editor) or rounded (win11, macos)."""
     frac = min(1, max(frac, 0.03))
     fill = f'class="{cls}"' if cls else f'fill="{color}"'
     if THEME in ("terminal", "classic"):
@@ -621,7 +553,7 @@ def lang_segments(langs, ignore):
 def build_header(cfg, handle):
     """Text on the left; on the right an illustration (portrait) or a neofetch-style panel (fetch).
 
-    A JPEG portrait fills the right side and fades into the panel. A PNG or WebP keeps its
+    A JPEG portrait fills the right side and fades into the window. A PNG or WebP keeps its
     transparency and is drawn as a cutout standing on the bottom edge, so it suits both themes.
     """
     top = PX
@@ -652,13 +584,11 @@ def build_header(cfg, handle):
     h = top + ph + 16 + M
     header_title = {"terminal": f"{handle.lower()}@{HOST}: ~", "classic": f"{S['about']} {cfg['name']}"}.get(THEME, cfg["name"])
     defs, body = shell(W, h, title=wtitle("header", header_title))
-    defs += '<linearGradient id="ng" x1="0" x2="1"><stop offset="0" class="n1"/><stop offset="1" class="n2"/></linearGradient>'
-    body += panel(ph)
     if cutout:
         raw, mime, pw, phh = pic
         img_w = side_w
         img_h = img_w * phh / pw
-        avail = h - M - (M + (BAR if windowed() else 0) + 6)  # below the title bar, down to the frame edge
+        avail = h - M - (M + BAR + 6)  # below the title bar, down to the frame edge
         if img_h > avail:
             img_h, img_w = avail, avail * pw / phh
         img_w = round(img_w)  # whole pixels, so each animation step lands exactly on a frame
@@ -689,18 +619,18 @@ def build_header(cfg, handle):
     elif pic:
         raw, mime, pw, phh = pic
         img_w, fade, shift = side_w, 130, 50
-        scaled_w = ph * pw / phh
+        iy, ih = M + BAR + 1, h - 2 * M - BAR - 1  # the window area under the title bar
+        scaled_w = ih * pw / phh
         shift = min(shift, scaled_w - img_w)
         defs += (
-            f'<clipPath id="pc"><rect x="{PX}" y="{top}" width="{W - 2 * PX}" height="{ph}" rx="12"/></clipPath>'
+            f'<clipPath id="pc"><rect x="{M}" y="{iy}" width="{W - 2 * M}" height="{ih}"/></clipPath>'
             f'<linearGradient id="pf" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/>'
             f'<stop offset="{fade / img_w:.2f}" stop-color="#fff" stop-opacity="1"/></linearGradient>'
-            f'<mask id="pm"><rect x="{box_x}" y="{top}" width="{img_w}" height="{ph}" fill="url(#pf)"/></mask>'
+            f'<mask id="pm"><rect x="{box_x}" y="{iy}" width="{img_w + 40}" height="{ih}" fill="url(#pf)"/></mask>'
         )
         body += (
-            f'<g clip-path="url(#pc)"><image href="data:{mime};base64,{base64.b64encode(raw).decode()}" '
-            f'x="{box_x - shift:.0f}" y="{top}" width="{scaled_w:.0f}" height="{ph}" preserveAspectRatio="none" mask="url(#pm)"/></g>'
-            f'<rect x="{PX}.5" y="{top}.5" width="{W - 2 * PX - 1}" height="{ph - 1}" rx="12" class="pline" stroke-width="1"/>'
+            f'<g clip-path="url(#fc)"><g clip-path="url(#pc)"><image href="data:{mime};base64,{base64.b64encode(raw).decode()}" '
+            f'x="{box_x - shift:.0f}" y="{iy}" width="{scaled_w:.0f}" height="{ih}" preserveAspectRatio="none" mask="url(#pm)"/></g></g>'
         )
     elif fetch:
         fx = box_x + 6
@@ -726,21 +656,17 @@ def build_header(cfg, handle):
     elif THEME == "classic":
         body += t(IX, top + 82, cfg["name"], 32, "t1", "700")
         body += t(IX, top + 110, cfg["role"], 15, "ac", "700")
-    elif THEME in ("win11", "macos"):
+    else:  # win11, macos
         body += t(IX, top + 40, "@" + handle.lower(), 12.5, "t2", "600")
         body += t(IX, top + 84, cfg["name"], 36, "t1", "600" if THEME == "win11" else "700")
         body += t(IX, top + 110, cfg["role"], 15, "ac", "600")
-    else:
-        body += t(IX, top + 38, "@" + handle.lower(), 12.5, "t2", "700", extra='letter-spacing="2.4"', mono=True)
-        body += t(IX, top + 84, cfg["name"], name_size, "", "800", extra='fill="url(#ng)"')
-        body += t(IX, top + 110, cfg["role"], 16, "ac", "500")
     for i, line in enumerate(bio):
         body += t(IX, top + 140 + i * 19, line, 13, "t1" if THEME == "classic" else "t2")
     body += draw_chips(pills, pills_y + 2, h=28, row_gap=6, size=12.5, pill=True, tcls="ac")
     return svg(W, h, f"{cfg['name']}: {cfg['role']}", body, defs)
 
 
-OY = 0  # vertical offset of project content (room for the title bar of windowed themes)
+OY = 0  # vertical offset of project content (room for the title bar)
 HOST = "github"  # host in the terminal title bar; a distro accent sets its own
 
 
@@ -760,7 +686,7 @@ def build_project(p, info, layout):
     desc_lines, chips, max_lines, chip_rows, h = layout
     pad = M + 22
     y0 = M + OY
-    defs, body = shell(CARD_W, h, rx=14, title=wtitle("project", p["title"], p["repo"].split("/")[1]))
+    defs, body = shell(CARD_W, h, title=wtitle("project", p["title"], p["repo"].split("/")[1]))
     body += t(pad, y0 + 32, p["label"], 10.5, "ac", "700", extra='letter-spacing="1.2"')
     body += t(pad, y0 + 60, p["title"], 19, "fn" if THEME == "editor" else "t1", "700", mono=mono())
     body += t(pad, y0 + 79, p["repo"], 11.5, "t2", mono=True)
@@ -796,7 +722,7 @@ def build_profile_signal(tiles, today):
     top, ph = PX, 218
     h = top + ph + 16 + M
     defs, body = shell(W, h, title=wtitle("sig", S["sig_title"]))
-    body += panel(ph) + titles(top, S["sig_title"], S["sig_sub"], S["sig_cmd"], "profileSignal")
+    body += titles(top, S["sig_title"], S["sig_sub"], S["sig_cmd"], "profileSignal")
     gap = 14
     tw = (IW - 3 * gap) / 4
     for i, (label, value, color) in enumerate(tiles):
@@ -804,7 +730,7 @@ def build_profile_signal(tiles, today):
         body += tile(x, y, tw, 104)
         body += t(x + 18, y + 28, label.upper(), 11, "t2", "700", extra='letter-spacing="1"', mono=mono())
         weight = "700" if THEME in ("win11", "macos") else "800"
-        body += t(x + 18, y + 70, str(value), 36 if windowed() else 38, color, weight, mono=mono())
+        body += t(x + 18, y + 70, str(value), 36, color, weight, mono=mono())
         body += bar(x + 18, y + 84, tw - 36, 8, value / milestone(value), cls=color)
     body += t(W - IX, top + ph - 10, f"{S['updated']} {fmt_full(today)}", 10.5, "t2", anchor="end", mono=mono())
     return svg(W, h, f"{S['sig_title']}: " + ", ".join(f"{v} {k}" for k, v, _ in tiles), body, defs)
@@ -816,9 +742,7 @@ def build_languages(segments, ignored):
     h = top + ph + 16 + M
     defs, body = shell(W, h, title=wtitle("lang", S["lang_title"]))
     sub = S["lang_sub"] + (f" ({S['lang_excl']} {', '.join(ignored)})" if ignored else "")
-    body += panel(ph) + titles(top, S["lang_title"], sub, S["lang_cmd"], "languageStack")
-    if THEME == "glass":
-        body += t(W - IX, top + 38, "stack.scan", 13, "ac", "700", anchor="end", mono=True)
+    body += titles(top, S["lang_title"], sub, S["lang_cmd"], "languageStack")
     bx = IX + 200
     for i, (name, frac) in enumerate(top_n):
         y = top + 92 + i * 32
@@ -843,9 +767,9 @@ def build_toolkit(groups):
     ph = y - 18 + 16 - top
     h = top + ph + 16 + M
     defs, body = shell(W, h, title=wtitle("tool", S["tool_title"]))
-    body += panel(ph) + titles(top, S["tool_title"], S["tool_sub"], S["tool_cmd"], "toolkit")
+    body += titles(top, S["tool_title"], S["tool_sub"], S["tool_cmd"], "toolkit")
     for i, (label, chips, ytop, block_h) in enumerate(rows):
-        label_cls = {"glass": "t2", "classic": "t1", "editor": "ty"}.get(THEME, "ac")
+        label_cls = {"classic": "t1", "editor": "ty"}.get(THEME, "ac")
         body += t(x0, ytop + 16, label, 12.5, label_cls, "700", mono=mono())
         body += draw_chips(chips, ytop)
         if i < len(rows) - 1:
@@ -869,7 +793,7 @@ def build_consistency(weeks, total):
     h = top + ph + 16 + M
     defs, body = shell(W, h, title=wtitle("act", S["act_title"]))
     counts = [d["contributionCount"] for w in weeks for d in w["contributionDays"]]
-    body += panel(ph) + titles(top, S["act_title"], S["act_sub"].format(n=total), S["act_cmd"], "contributions")
+    body += titles(top, S["act_title"], S["act_sub"].format(n=total), S["act_cmd"], "contributions")
     mx = max(counts + [1])
     lx = W - IX
     body += t(lx, top + 40, S["more"], 11.5, "t2", anchor="end")
@@ -984,7 +908,7 @@ def main():
         ASSETS = ROOT / "assets"
 
     cfg = json.loads((ROOT / "data" / "profile.json").read_text(encoding="utf-8-sig"))  # tolerates a BOM
-    THEME = cfg.get("theme", "glass")
+    THEME = cfg.get("theme", "terminal")
     if THEME not in THEMES:
         sys.exit(f"Unknown theme {THEME!r}; use one of: {', '.join(THEMES)}")
     ACCENT = cfg.get("accent") or DEFAULT_ACCENT.get(THEME, "cyan")
@@ -992,7 +916,7 @@ def main():
         sys.exit(f"Unknown accent {ACCENT!r}; use one of: {', '.join(ACCENTS)}")
     HOST = cfg.get("host") or DISTRO_HOSTS.get(ACCENT, "github")
     S = STRINGS[cfg.get("lang", "en")]
-    OY = BAR - 4 if windowed() else 0
+    OY = BAR - 4
     TOKEN = get_token()
     login = cfg["login"]
     ignore = set(cfg.get("languages_ignore", []))

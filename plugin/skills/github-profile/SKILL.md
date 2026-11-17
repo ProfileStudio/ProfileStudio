@@ -23,7 +23,7 @@ rest from their data and say what you decided. Read `reference/lessons.md` befor
 | `templates/update-profile.yml` | Optional weekly refresh workflow (needs a `PROFILE_TOKEN` secret). |
 | `templates/gitignore` | Copy as `.gitignore`. |
 | `reference/configuration.md` | Every `profile.json` key. |
-| `reference/styles/<theme>-<dark|light>.jpg` | Screenshots of the six themes, to show the user in step 3. |
+| `reference/styles/<theme>-<dark|light>.jpg` | Screenshots of the five themes, to show the user in step 3. |
 | `reference/lessons.md` | Known pitfalls. |
 
 `<skill>` below means the folder that holds this file.
@@ -56,7 +56,7 @@ Never invent features, numbers or job titles.
 
 ### Round 1: style
 
-People like a theme that looks like the system or tool they use every day. Six themes exist:
+People like a theme that looks like the system or tool they use every day. Five themes exist:
 
 | `theme` | Looks like | Suits |
 |---|---|---|
@@ -65,12 +65,11 @@ People like a theme that looks like the system or tool they use every day. Six t
 | `classic` | 90s desktop: gray bevels, navy title bar, block progress bars | Retro fans; stands out the most |
 | `win11` | Modern Windows: flat rounded windows, caption buttons, system accent | Windows users |
 | `macos` | Mac windows: traffic lights, unified title bar, system blue | Mac users |
-| `glass` | Dark glass cards with color glows, big gradient name | Product, web and design profiles |
 
 Read `reference/styles/<theme>-dark.jpg` for the candidates so the user sees them. Then ask in one
 AskUserQuestion call (an option list holds at most 4 entries, so the style is split in two steps):
 
-1. **Style family**: Terminal / Code editor / Operating system window / Glass. Recommend from what
+1. **Style family**: Terminal / Code editor / Operating system window. Recommend from what
    step 2 shows: Linux tooling suggests terminal, mostly web code suggests editor.
 2. **Language** of the README: English / Spanish (`en`, `es`).
 3. **Right side of the header**: an animated GIF / a still image / a neofetch-style info panel
@@ -84,7 +83,7 @@ Then one follow-up call, only for the family that needs it:
   shows `user@<distro>` in the title bar.
 
 Accents are keys of `ACCENTS` in `generate.py`; any of them works with `terminal`, `editor`, `win11`
-and `macos`. `classic` and `glass` have fixed palettes.
+and `macos`. `classic` has a fixed palette.
 
 ### Round 2: content (one AskUserQuestion call, after drafting from step 2)
 
