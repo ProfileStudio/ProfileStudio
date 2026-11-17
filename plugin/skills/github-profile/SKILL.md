@@ -23,7 +23,7 @@ rest from their data and say what you decided. Read `reference/lessons.md` befor
 | `templates/update-profile.yml` | Optional weekly refresh workflow (needs a `PROFILE_TOKEN` secret). |
 | `templates/gitignore` | Copy as `.gitignore`. |
 | `reference/configuration.md` | Every `profile.json` key. |
-| `reference/styles/<theme>-<dark|light>.jpg` | Screenshots of the ten themes, to show the user in step 3. |
+| `reference/styles/<theme>-<dark|light>.jpg` | Screenshots of the 13 themes, to show the user in step 3. |
 | `reference/lessons.md` | Known pitfalls. |
 
 `<skill>` below means the folder that holds this file.
@@ -56,7 +56,7 @@ Never invent features, numbers or job titles.
 
 ### Round 1: style
 
-People like a theme that looks like the system or tool they use every day. Ten themes exist:
+People like a theme that looks like the system or tool they use every day. 13 themes exist:
 
 | `theme` | Looks like | Suits |
 |---|---|---|
@@ -70,13 +70,16 @@ People like a theme that looks like the system or tool they use every day. Ten t
 | `macos` | Mac windows: traffic lights, unified title bar, system blue | Mac users |
 | `handheld` | 90s handheld console screen, four greens; the portrait is recolored | Pixel-art headers, game devs |
 | `crt` | Phosphor screen, scan lines and glow, amber or green | Retro computing fans |
+| `browser` | Browser window: address bar, headings highlighted like the element inspector | Web and frontend developers |
+| `sql` | Database console: headings as queries, cards as result sets | Backend and data people |
+| `git` | Commit graph in the gutter, headings as commits with hash and refs | Anyone; open source maintainers |
 
 Read `reference/styles/<theme>-dark.jpg` for the candidates so the user sees them. Then ask in one
 AskUserQuestion call (an option list holds at most 4 entries, so the style is split in two steps):
 
-1. **Style family**: Terminal / Code editor / Operating system window / Retro. Recommend from
-   what step 2 shows: Linux tooling suggests terminal, mostly web code suggests editor, notebooks
-   suggest the notebook theme, a pixel-art header suggests retro.
+1. **Style family**: Terminal and tools / Code editor / Window / Retro. Recommend from what
+   step 2 shows: Linux tooling suggests terminal, mostly web code suggests editor or browser,
+   databases suggest sql, notebooks suggest notebook, a pixel-art header suggests retro.
 2. **Language** of the README: English / Spanish (`en`, `es`).
 3. **Right side of the header**: an animated GIF / a still image / a neofetch-style info panel
    (`fetch`) / nothing.
@@ -84,14 +87,15 @@ AskUserQuestion call (an option list holds at most 4 entries, so the style is sp
 Then one follow-up call, only for the family that needs it:
 
 - Code editor → which one: Editor (VS Code-like) / IDE / Vim / Notebook.
-- Operating system window → which one: Classic (90s) / Windows 11 / macOS.
+- Window → which one: Classic (90s) / Windows 11 / macOS / Browser.
+- Terminal and tools → which one: Shell terminal / Database console (`sql`) / Git log (`git`).
 - Retro → Handheld console / CRT amber / CRT green.
-- Terminal → which Linux they use, as the accent: Ubuntu / Arch / Debian / Other. On "Other", offer
+- Shell terminal → which Linux they use, as the accent: Ubuntu / Arch / Debian / Other. On "Other", offer
   Fedora / Mint / CachyOS / a plain color (cyan, green, amber or magenta). A distro sets its color and
   shows `user@<distro>` in the title bar.
 
 Accents are keys of `ACCENTS` in `generate.py`; any of them works with `terminal`, `editor`, `ide`,
-`vim`, `notebook`, `win11` and `macos`. `crt` takes a phosphor (`amber`, `green`). `classic` and
+`vim`, `notebook`, `win11`, `macos`, `browser`, `sql` and `git`. `crt` takes a phosphor (`amber`, `green`). `classic` and
 `handheld` have a fixed palette.
 
 ### Round 2: content (one AskUserQuestion call, after drafting from step 2)

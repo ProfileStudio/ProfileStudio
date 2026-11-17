@@ -3,7 +3,7 @@
 [English](README.md) · **Español**
 
 Genera un README de perfil de GitHub pulido a partir de tus datos reales de GitHub: tarjetas SVG
-con estadísticas en vivo, diez temas inspirados en las herramientas que los desarrolladores usan a diario, modo claro y oscuro, y una **cabecera animada** opcional hecha con tu
+con estadísticas en vivo, 13 temas inspirados en las herramientas que los desarrolladores usan a diario, modo claro y oscuro, y una **cabecera animada** opcional hecha con tu
 propia imagen o GIF. Un agente de Claude Code te hace algunas preguntas de diseño, arma una vista
 previa y publica cuando lo apruebas. ¿No usas Claude? El generador es un solo script de Python sin
 dependencias.
@@ -18,7 +18,7 @@ dependencias.
 
 [github.com/WaltherMoraRivera](https://github.com/WaltherMoraRivera): tema terminal, en español, retrato pixel art animado.
 
-## Diez temas, inspirados en las herramientas que usas a diario
+## 13 temas, inspirados en las herramientas que usas a diario
 
 | Tema | Oscuro | Claro |
 |---|---|---|
@@ -32,6 +32,9 @@ dependencias.
 | **notebook** · celdas numeradas, código de entrada y su salida | <img src="plugin/skills/github-profile/reference/styles/notebook-dark.jpg" alt="Tema notebook, oscuro"> | <img src="plugin/skills/github-profile/reference/styles/notebook-light.jpg" alt="Tema notebook, claro"> |
 | **handheld** · pantalla de consola portátil de los 90: cuatro verdes, retrato recoloreado | <img src="plugin/skills/github-profile/reference/styles/handheld-dark.jpg" alt="Tema handheld, oscuro"> | <img src="plugin/skills/github-profile/reference/styles/handheld-light.jpg" alt="Tema handheld, claro"> |
 | **crt** · pantalla de fósforo con líneas de barrido y brillo, ámbar o verde | <img src="plugin/skills/github-profile/reference/styles/crt-dark.jpg" alt="Tema CRT, oscuro"> | <img src="plugin/skills/github-profile/reference/styles/crt-light.jpg" alt="Tema CRT, claro"> |
+| **browser** · barra de direcciones, títulos resaltados como en el inspector de elementos | <img src="plugin/skills/github-profile/reference/styles/browser-dark.jpg" alt="Tema Browser, oscuro"> | <img src="plugin/skills/github-profile/reference/styles/browser-light.jpg" alt="Tema Browser, claro"> |
+| **sql** · consola de base de datos: títulos como consultas, tarjetas como sus resultados | <img src="plugin/skills/github-profile/reference/styles/sql-dark.jpg" alt="Tema SQL, oscuro"> | <img src="plugin/skills/github-profile/reference/styles/sql-light.jpg" alt="Tema SQL, claro"> |
+| **git** · grafo de commits en el margen, títulos como commits con hash y refs | <img src="plugin/skills/github-profile/reference/styles/git-dark.jpg" alt="Tema Git, oscuro"> | <img src="plugin/skills/github-profile/reference/styles/git-light.jpg" alt="Tema Git, claro"> |
 
 Cada tarjeta sigue sola el tema de GitHub de quien la mira. El tema terminal también tiene variantes
 por distribución de Linux (`ubuntu`, `arch`, `debian`, `fedora`, `mint`, `cachyos`): su color y
@@ -61,7 +64,7 @@ mantienen una paleta fija. Los temas se inspiran en esos sistemas y no usan logo
 Luego basta con decir **"configura mi perfil de GitHub"**. El agente:
 
 1. Revisa `gh`, Python y git, y lee tus datos públicos de GitHub.
-2. Pregunta el estilo (diez temas, con variantes por distro de Linux), el idioma y qué va en la cabecera.
+2. Pregunta el estilo (13 temas, con variantes por distro de Linux), el idioma y qué va en la cabecera.
 3. Propone tus cuatro mejores proyectos, las estadísticas y todos los textos, y te pide confirmarlos.
 4. Convierte tu GIF o imagen en una cabecera que funciona en ambos temas.
 5. Arma una vista previa local y publica solo lo que apruebes.

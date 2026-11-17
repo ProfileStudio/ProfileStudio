@@ -1,7 +1,7 @@
 {
   "name": "github-profile",
-  "version": "1.3.0",
-  "description": "Design, preview and publish a GitHub profile README: SVG cards with live stats (profile signal, selected work, language stack, toolkit, contribution heatmap), ten themes (terminal with Linux distro variants, code editor, IDE, Vim, notebook, classic 90s desktop, Windows 11, macOS, handheld console, CRT) in light and dark, and an optional animated header made from your own image or GIF.",
+  "version": "1.4.0",
+  "description": "Design, preview and publish a GitHub profile README: SVG cards with live stats (profile signal, selected work, language stack, toolkit, contribution heatmap), 13 themes (terminal with Linux distro variants, code editor, IDE, Vim, notebook, classic 90s desktop, Windows 11, macOS, browser, SQL console, git log, handheld console, CRT) in light and dark, and an optional animated header made from your own image or GIF.",
   "author": {
     "name": "Walther Mora Rivera",
     "url": "https://github.com/WaltherMoraRivera"
