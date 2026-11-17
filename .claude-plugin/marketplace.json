@@ -1,0 +1,15 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "github-profile-readme-generator",
+  "description": "Builds an animated GitHub profile README from your real GitHub data, after a few design questions.",
+  "owner": {
+    "name": "Walther Mora Rivera"
+  },
+  "plugins": [
+    {
+      "name": "github-profile",
+      "source": "./plugin",
+      "description": "Design, preview and publish a GitHub profile README: SVG cards with live stats, light and dark themes, and an optional animated header from your own image or GIF."
+    }
+  ]
+}

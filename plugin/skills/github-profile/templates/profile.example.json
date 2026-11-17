@@ -1,0 +1,44 @@
+{
+  "_help": "See reference/configuration.md for every key. Keys starting with _ are ignored; delete them before publishing.",
+  "login": "your-login",
+  "name": "Your Name",
+  "role": "Backend developer · Your company or school",
+  "bio": "What you build and why, in two or three short sentences. Keep it around 180 characters so the header layout holds.",
+  "pills": ["Python", "TypeScript", "PostgreSQL", "Docker"],
+  "theme": "terminal",
+  "accent": "cyan",
+  "lang": "en",
+  "tiles": ["repos", "contributions", "prs", "stars"],
+  "portrait": "data/portrait-sheet.png",
+  "portrait_frames": "data/portrait-sheet.json",
+  "portrait_width": 250,
+  "languages_ignore": ["HTML", "CSS"],
+  "projects": [
+    {
+      "repo": "your-login/project-a",
+      "title": "Project A",
+      "label": "WEB APP · PWA",
+      "desc": "What it does and for whom, in about 150 characters, taken from the project's README.",
+      "stack": ["Next.js", "TypeScript", "Supabase", "Tailwind"],
+      "status": "In production · Vercel",
+      "kind": "prod"
+    },
+    {
+      "repo": "your-login/project-b",
+      "title": "Project B",
+      "label": "API · BACKEND",
+      "desc": "What it does and for whom, in about 150 characters, taken from the project's README.",
+      "stack": ["FastAPI", "PostgreSQL", "Docker", "pytest"],
+      "status": "Prototype",
+      "kind": "proto"
+    }
+  ],
+  "toolkit": [
+    { "label": "Languages", "items": ["Python", "TypeScript", "SQL"] },
+    { "label": "Backend", "items": ["FastAPI", "Django", "REST APIs"] },
+    { "label": "Frontend", "items": ["React", "Next.js", "Tailwind CSS"] },
+    { "label": "Delivery", "items": ["Git", "GitHub Actions", "Docker"] }
+  ],
+  "extra_sections": [],
+  "credits": []
+}

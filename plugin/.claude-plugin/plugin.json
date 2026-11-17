@@ -1,0 +1,13 @@
+{
+  "name": "github-profile",
+  "version": "1.0.0",
+  "description": "Design, preview and publish a GitHub profile README: SVG cards with live stats (profile signal, selected work, language stack, toolkit, contribution heatmap), light and dark themes, and an optional animated header made from your own image or GIF.",
+  "author": {
+    "name": "Walther Mora Rivera",
+    "url": "https://github.com/WaltherMoraRivera"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/WaltherMoraRivera/github-profile-readme-generator",
+  "repository": "https://github.com/WaltherMoraRivera/github-profile-readme-generator",
+  "keywords": ["github-profile", "profile-readme", "readme", "svg", "animated", "pixel-art", "github-stats"]
+}
