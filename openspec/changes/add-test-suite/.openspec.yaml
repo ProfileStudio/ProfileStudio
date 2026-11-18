@@ -7,3 +7,4 @@ x-area: core
 x-priority: high
 x-model: sonnet
 x-effort: medium
+x-issue: 1
