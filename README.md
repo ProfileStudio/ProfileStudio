@@ -145,7 +145,10 @@ For a still image on a solid dark background, `scripts/cutout.py` removes the ba
 - **Weekly refresh**: `templates/update-profile.yml` runs only when the repo has a `PROFILE_TOKEN`
   secret, a read-only token you create. The default Actions token sees public activity only and
   would lower your numbers. Without it, refresh by running the generator and pushing.
-- **Images look old after a push?** GitHub caches them for a few minutes; reload with Ctrl+F5.
+- **Images look old after a push?** Each image path carries a hash of the file (`?v=…`), so new
+  cards show at once; if one does not, reload with Ctrl+F5.
+- **"Made with" badge**: a small badge at the bottom right, in your theme's colors, links back to
+  this generator. Remove it with `"made_with": false` in `profile.json`.
 - **Art by someone else** needs a visible credit (`credits` in `profile.json`).
 
 Known pitfalls and how they were solved:

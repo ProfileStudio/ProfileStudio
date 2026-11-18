@@ -67,5 +67,6 @@ Commits, last push date and the language bar are fetched live.
 | Key | Notes |
 |---|---|
 | `extra_sections` | List of `{ "heading": "...", "html": "..." }` added after the heatmap, verbatim. |
-| `credits` | List of HTML lines shown at the bottom, e.g. art credits or a "Made with" link. |
+| `credits` | List of HTML lines shown at the bottom, e.g. art credits. |
+| `made_with` | `true` (default) draws `assets/made-with.svg`, a small badge in the profile's theme linking to the generator, at the bottom right; it replaces the footer line. `false` removes it and brings the footer back. An old text "Made with" line in `credits` is skipped while the badge is on. |
 | `readme` | `false` stops the generator from writing `README.md`. |

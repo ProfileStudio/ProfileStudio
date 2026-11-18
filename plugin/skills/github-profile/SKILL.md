@@ -128,7 +128,8 @@ message with the preview (step 5):
   Project labels, descriptions, stacks and statuses from each README. Pills and toolkit from their
   languages, repository topics and READMEs.
 - Existing README content worth keeping (widget, game): keep it at the bottom and say so.
-- No "Made with" link (offer it in the summary; it is opt-in).
+- The "made with" badge stays on (the default). Say so in the summary: "I added a small badge at
+  the bottom that links to the generator; tell me if you want it gone" (`"made_with": false`).
 
 Then ask in one AskUserQuestion call: **Publish this (Recommended)** / **Change something** (they
 say what; apply it and preview again) / **Switch to custom** (ask the language, then continue with
@@ -147,8 +148,9 @@ Ask these when they chose custom, or switched to it from the quick preview.
    them). Offer one alternative set.
 3. **Existing README content** (only if step 2 found something worth keeping, such as a widget or a
    game): keep it at the bottom (`extra_sections`) / drop it.
-4. **"Made with" link**: add a small line at the bottom pointing to this generator
-   (`https://github.com/WaltherMoraRivera/github-profile-readme-generator`) / no. Purely optional.
+4. **"Made with" badge**: a small badge at the bottom right, drawn in the profile's own theme,
+   links to this generator. "Keep it (Recommended)" / "Remove it" (`"made_with": false`). Never add
+   it as a `credits` line: the generator draws it.
 
 ### Round 3: texts (plain message)
 
@@ -230,7 +232,8 @@ Only the user can do these (say so; do not try):
 ## 7. Verify and hand over
 
 - `curl -sI https://raw.githubusercontent.com/<login>/<login>/main/assets/header.svg` returns 200.
-- The profile page shows the README (Ctrl+F5 if images look old; GitHub caches them for minutes).
+- The profile page shows the README. Image paths carry `?v=<hash>` of each file, so a push shows the
+  new cards at once; if one still looks old, Ctrl+F5.
 - Report what was published, what was skipped, the backup branch, and how to refresh later: edit
   `data/profile.json`, run `python3 scripts/generate.py`, push. Never edit `README.md` by hand; it is
   generated. To go back, they can ask you to restore a backup (step 8).

@@ -149,7 +149,10 @@ Para una imagen fija con fondo oscuro sólido, `scripts/cutout.py` quita el fond
 - **Actualización semanal**: `templates/update-profile.yml` solo corre si el repo tiene el secreto
   `PROFILE_TOKEN`, un token de solo lectura que creas tú. El token por defecto de Actions solo ve la
   actividad pública y bajaría tus cifras. Sin él, actualiza ejecutando el generador y haciendo push.
-- **¿Imágenes viejas después de un push?** GitHub las guarda en caché unos minutos; recarga con Ctrl+F5.
+- **¿Imágenes viejas después de un push?** Cada imagen lleva un hash del archivo (`?v=…`), así que
+  las tarjetas nuevas se ven de inmediato; si alguna no, recarga con Ctrl+F5.
+- **Insignia "hecho con"**: una insignia pequeña abajo a la derecha, con los colores de tu tema,
+  enlaza a este generador. Se quita con `"made_with": false` en `profile.json`.
 - **Arte de otra persona**: requiere un crédito visible (`credits` en `profile.json`).
 
 Errores conocidos y cómo se resolvieron:

@@ -10,7 +10,9 @@ Collected while building the first profile with this generator. Each one cost a 
   No `<picture>` element is needed.
 - HTML `<table>` in a README gets cell borders from GitHub's CSS. For two cards side by side use
   two `<img width="49.5%">` in a row; each SVG carries a 6 px transparent margin as the gutter.
-- Images are cached for a few minutes after a push. Hard reload before reporting a bug.
+- Images are cached for a few minutes after a push. The README adds `?v=<hash>` (first 8 hex of
+  the file's SHA-1) to every image, so a changed card gets a new URL and shows at once. Idea from a
+  user's own copy of the generator.
 
 ## Themes
 
