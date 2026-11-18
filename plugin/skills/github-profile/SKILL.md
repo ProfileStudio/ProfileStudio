@@ -48,6 +48,7 @@ gh api "users/<login>/repos?per_page=100&type=owner" --paginate \
 gh api graphql -f query='{user(login:"<login>"){pinnedItems(first:6){nodes{... on Repository{nameWithOwner}}}
   contributionsCollection{contributionCalendar{totalContributions} totalPullRequestContributions}}}'
 gh api repos/<login>/<login>/readme --jq .content | base64 -d   # current profile README, if any
+gh api repos/<login>/<login>/contents/data/profile.json --jq .content | base64 -d   # made by this generator?
 gh api user/orgs --jq '.[].login'                               # org repos can be featured too
 ```
 
@@ -83,7 +84,12 @@ AskUserQuestion call (an option list holds at most 4 entries, so the style is sp
 1. **Style family**: Terminal and tools / Code editor / Window / Retro. Recommend from what
    step 2 shows: Linux tooling suggests terminal, mostly web code suggests editor or browser,
    databases suggest sql, notebooks suggest notebook, a pixel-art header suggests retro.
-2. **Setup mode**, explained like an installer's "express or custom" screen:
+2. **Setup mode**, explained like an installer's "express or custom" screen. When step 2 found a
+   `data/profile.json` (a profile made by this generator), add a first option and recommend it:
+   - **Keep my content, change the style (Recommended)**: "I keep your texts, projects, stats and
+     header and only apply the new theme, with the latest generator." Then skip the follow-up
+     content questions, update `generate.py`, change `theme` (and `accent`: drop it or set the new
+     theme's default, unless they picked one), and go to step 5.
    - **Quick (Recommended)**: "I pick your projects, stats and texts from your GitHub data and show
      you a preview. You approve it, change something, or switch to custom. Nothing is published
      without your OK."
@@ -188,7 +194,14 @@ python3 scripts/generate.py
 public repository named exactly like the account on the profile page.
 
 Open `preview.html` (it imitates GitHub's README column). Check both themes (OS theme, or Chromium
-DevTools → Rendering → "Emulate CSS prefers-color-scheme") and that the header animates. Fix text
+DevTools → Rendering → "Emulate CSS prefers-color-scheme") and that the header animates. In a
+built-in browser pane that cannot inspect `file://` pages, serve the folder and open
+`http://localhost:8765/preview.html`, then stop the server when done:
+
+```bash
+python3 -m http.server 8765 --directory ~/profile-readme   # run it in the background; pass the folder explicitly
+```
+ Fix text
 running past a card edge or pills crowding the header by shortening text first. Show the preview
 and wait for their OK.
 
@@ -200,7 +213,10 @@ Each item is public. List them, ask once, run only what they approve.
    commits, run `python3 <skill>/scripts/backup.py create` inside the clone before pushing. It saves
    the profile as it is on GitHub now to a `backup/<date>` branch of the same repository (public,
    like the repository) and does nothing when that state is already saved. Tell them the branch name.
-1. Commit and push `README.md assets data scripts .gitignore`.
+1. Commit and push `README.md assets data scripts .gitignore`. If `git push` hangs or asks for a
+   password (no credential helper on that machine), push with the `gh` login instead of waiting:
+   `git -c credential.helper= -c "credential.helper=!gh auth git-credential" push`. `backup.py`
+   already does this on its own.
 2. Missing descriptions or topics on the featured repos: `gh repo edit <owner>/<repo> --description "..." --add-topic a,b`.
    If a repo already has a description, ask before replacing it.
 3. Weekly refresh: copy `templates/update-profile.yml` to `.github/workflows/`. It does nothing until

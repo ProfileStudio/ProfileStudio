@@ -90,3 +90,15 @@ Collected while building the first profile with this generator. Each one cost a 
 - PowerShell 5.1 writes JSON with a BOM. The generator reads `profile.json` as `utf-8-sig`.
 - Headless Edge or Chrome follow the OS theme for screenshots; to check the light theme there,
   remove the dark `@media` block from a temporary copy of the SVGs.
+
+## Running the skill (from real sessions)
+
+- **git can hang** on fetch or push where git has no credential helper of its own: it waits for a
+  password nobody types. `backup.py` sets `GIT_TERMINAL_PROMPT=0` and borrows the `gh` login
+  (`credential.helper=!gh auth git-credential`); do the same for a manual `git push`.
+- **An existing generated profile** usually wants only a new theme. Offer "keep my content, change
+  the style" before any content question; the quick setup would otherwise rewrite texts the user
+  already approved.
+- **Previewing in a built-in browser pane**: `file://` pages may not be inspectable there. Serve the
+  folder with `python3 -m http.server <port> --directory <folder>` (the explicit `--directory`
+  avoids serving the wrong folder), started as its own background command, and stop it afterwards.

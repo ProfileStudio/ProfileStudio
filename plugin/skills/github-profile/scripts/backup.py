@@ -14,16 +14,46 @@ pushed by `restore`; push when the user approves.
 import argparse
 import datetime as dt
 import json
+import os
+import re
 import subprocess
 import sys
 
 PREFIX = "backup/"
 
 
+NETWORK = ("fetch", "push")
+_GH = None
+
+
+def gh_login():
+    """True when the GitHub CLI is signed in; then git borrows its login for fetch and push."""
+    global _GH
+    if _GH is None:
+        try:
+            _GH = subprocess.run(["gh", "auth", "token"], capture_output=True, timeout=30).returncode == 0
+        except (OSError, subprocess.TimeoutExpired):
+            _GH = False
+    return _GH
+
+
 def git(*args, check=True):
-    r = subprocess.run(["git", *args], capture_output=True, text=True, encoding="utf-8")
+    cmd, env = ["git"], dict(os.environ)
+    if args[0] in NETWORK:
+        # Never wait for a password prompt nobody will answer: fail fast instead of hanging.
+        env.update(GIT_TERMINAL_PROMPT="0", GCM_INTERACTIVE="never")
+        if gh_login():  # use the gh login even where git has no credential helper of its own
+            cmd += ["-c", "credential.helper=", "-c", "credential.helper=!gh auth git-credential"]
+    try:
+        r = subprocess.run(cmd + list(args), capture_output=True, text=True, encoding="utf-8", env=env,
+                           timeout=180 if args[0] in NETWORK else 60)
+    except subprocess.TimeoutExpired:
+        sys.exit(f"git {args[0]} timed out. Check the connection, or run `gh auth login` and `gh auth setup-git`.")
     if check and r.returncode:
-        sys.exit(f"git {' '.join(args)} failed: {r.stderr.strip()}")
+        hint = ""
+        if args[0] in NETWORK and re.search(r"auth|credential|terminal prompts|403|401", r.stderr, re.I):
+            hint = "\nSign in with `gh auth login` (the script then uses that login)."
+        sys.exit(f"git {' '.join(args)} failed: {r.stderr.strip()}{hint}")
     return r.stdout.strip()
 
 
