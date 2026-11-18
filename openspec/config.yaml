@@ -1,0 +1,33 @@
+schema: spec-driven
+
+context: |
+  Language: English
+  All artifacts must be written in English.
+  Keep OpenSpec structural headings and SHALL/MUST keywords in English.
+
+  Project: ProfileStudio, "everything you need to build, customize and maintain your GitHub
+  profile". It ships as a Claude Code plugin (skill `github-profile`) plus a Python CLI.
+  - `plugin/skills/github-profile/scripts/generate.py` reads `data/profile.json`, calls the
+    GitHub REST and GraphQL APIs through the user's `gh` login and writes static SVG cards,
+    `README.md` and `preview.html` into the user's profile repository. It is copied into that
+    repository, so it must run with Python 3.9+ alone (no pip installs at run time).
+  - `backup.py` keeps `backup/*` branches; `cutout.py` is an optional tool (Pillow).
+  - 13 themes, light and dark through `prefers-color-scheme` inside each SVG, custom colors in
+    `profile.json` (`accent`, `theme_overrides`). Nothing is hosted: no server, no database.
+  - GitHub shows README images as `<img>`: no scripts, no external fonts, links only around
+    whole images.
+  Ideas taken from other projects are credited in the proposal; code is never copied from a
+  project without a license, and copied MIT/Apache code keeps its notice.
+
+rules:
+  proposal:
+    - State what is out of scope.
+    - Credit the project an idea comes from, if any.
+  tasks:
+    - Include tests (mocked GitHub data) and documentation updates (README.md, README.es.md,
+      reference/configuration.md, SKILL.md when the agent flow changes).
+    - Keep each task small enough to review in one sitting.
+
+# Tool-specific metadata lives in each change's .openspec.yaml under x- keys:
+#   x-milestone, x-type, x-area, x-priority, x-model (haiku|sonnet|opus), x-effort (low|medium|high)
+# scripts/openspec_issues.py turns each change into a GitHub issue with those labels.

@@ -1,0 +1,8 @@
+schema: spec-driven
+created: 2026-11-18
+x-milestone: v2.0 Maturity
+x-type: feature
+x-area: config
+x-priority: medium
+x-model: sonnet
+x-effort: medium
