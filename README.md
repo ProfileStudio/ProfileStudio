@@ -63,10 +63,27 @@ keep a fixed palette. Themes are inspired by these systems and use no logos.
 Then just say **"set up my GitHub profile"**. The agent:
 
 1. Checks `gh`, Python and git, and reads your public GitHub data.
-2. Asks about style (13 themes, including Linux distro variants), language and header media.
-3. Proposes your four best projects, the stats to show and every text, and asks you to confirm.
-4. Turns your GIF or image into a header that works in both themes.
-5. Builds a local preview and publishes only what you approve.
+2. Asks for a theme (13, including Linux distro variants) and a setup mode, like an installer:
+   - **Quick**: one more question (do you have an image or GIF for the header?). The agent picks
+     your projects, stats and texts from your GitHub data and shows you a preview.
+   - **Custom**: you choose the language, featured projects, stats, header and every text.
+3. Turns your GIF or image into a header that works in both themes.
+4. Builds a local preview. You approve it, change something, or switch from quick to custom.
+5. Backs up your current profile, then publishes only what you approve.
+
+### Backups
+
+Before every publish, the agent saves your profile as it is on GitHub to a `backup/<date>` branch
+of your profile repository (README, images and data). Ask **"show my profile backups"** or
+**"restore my profile from November 15"**: it lists them with date and theme and brings the one you
+pick back as a new commit, after backing up the current one, so nothing is lost. Without Claude,
+inside your profile repository:
+
+```bash
+python3 path/to/scripts/backup.py create          # save the current profile
+python3 path/to/scripts/backup.py list            # see backups
+python3 path/to/scripts/backup.py restore 2026-11-15-1030 && git push
+```
 
 ## Quick start without Claude
 
@@ -84,7 +101,9 @@ cp ../github-profile-readme-generator/plugin/skills/github-profile/templates/git
 python3 scripts/generate.py
 ```
 
-Open `preview.html` to check it, then commit and push `README.md assets data scripts .gitignore`.
+Open `preview.html` to check it. If you already had a profile, save it first with
+`python3 ../github-profile-readme-generator/plugin/skills/github-profile/scripts/backup.py create`,
+then commit and push `README.md assets data scripts .gitignore`.
 A public repository named exactly like your account is shown on your profile page.
 
 Every option is documented in

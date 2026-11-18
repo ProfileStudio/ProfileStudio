@@ -64,10 +64,28 @@ mantienen una paleta fija. Los temas se inspiran en esos sistemas y no usan logo
 Luego basta con decir **"configura mi perfil de GitHub"**. El agente:
 
 1. Revisa `gh`, Python y git, y lee tus datos públicos de GitHub.
-2. Pregunta el estilo (13 temas, con variantes por distro de Linux), el idioma y qué va en la cabecera.
-3. Propone tus cuatro mejores proyectos, las estadísticas y todos los textos, y te pide confirmarlos.
-4. Convierte tu GIF o imagen en una cabecera que funciona en ambos temas.
-5. Arma una vista previa local y publica solo lo que apruebes.
+2. Pregunta el tema (13, con variantes por distro de Linux) y el modo de configuración, como un instalador:
+   - **Rápida**: una sola pregunta más (¿tienes una imagen o GIF para la cabecera?). El agente elige
+     tus proyectos, estadísticas y textos a partir de tus datos de GitHub y te muestra una vista previa.
+   - **Personalizada**: eliges el idioma, los proyectos destacados, las estadísticas, la cabecera y
+     cada texto.
+3. Convierte tu GIF o imagen en una cabecera que funciona en ambos temas.
+4. Arma una vista previa local. La apruebas, cambias algo o pasas de rápida a personalizada.
+5. Respalda tu perfil actual y luego publica solo lo que apruebes.
+
+### Respaldos
+
+Antes de cada publicación, el agente guarda tu perfil tal como está en GitHub en una rama
+`backup/<fecha>` de tu repositorio de perfil (README, imágenes y datos). Pide **"muestra los
+respaldos de mi perfil"** o **"restaura mi perfil del 15 de noviembre"**: los lista con fecha y tema
+y trae de vuelta el que elijas como un commit nuevo, después de respaldar el actual, así que no se
+pierde nada. Sin Claude, dentro de tu repositorio de perfil:
+
+```bash
+python3 ruta/a/scripts/backup.py create           # guarda el perfil actual
+python3 ruta/a/scripts/backup.py list             # muestra los respaldos
+python3 ruta/a/scripts/backup.py restore 2026-11-15-1030 && git push
+```
 
 ## Inicio rápido sin Claude
 
@@ -85,7 +103,9 @@ cp ../github-profile-readme-generator/plugin/skills/github-profile/templates/git
 python3 scripts/generate.py
 ```
 
-Abre `preview.html` para revisarlo y luego haz commit y push de `README.md assets data scripts .gitignore`.
+Abre `preview.html` para revisarlo. Si ya tenías un perfil, guárdalo antes con
+`python3 ../github-profile-readme-generator/plugin/skills/github-profile/scripts/backup.py create`,
+y luego haz commit y push de `README.md assets data scripts .gitignore`.
 GitHub muestra en tu perfil el README de un repositorio público con el mismo nombre que tu cuenta.
 
 Todas las opciones están en

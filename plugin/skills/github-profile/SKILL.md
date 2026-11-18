@@ -1,6 +1,6 @@
 ---
 name: github-profile
-description: Design, preview and publish a visual GitHub profile README made of SVG cards with live GitHub data (header with optional animated image or GIF, profile signal, selected work, language stack, toolkit, contribution heatmap). Use when the user wants to create, redesign or refresh their GitHub profile README, or says "set up my GitHub profile".
+description: Design, preview and publish a visual GitHub profile README made of SVG cards with live GitHub data (header with optional animated image or GIF, profile signal, selected work, language stack, toolkit, contribution heatmap), with a quick or a custom setup, and back up or restore earlier versions of the profile. Use when the user wants to create, redesign or refresh their GitHub profile README, says "set up my GitHub profile", or wants to see, keep or go back to a previous version of it.
 ---
 
 # GitHub profile README generator
@@ -9,8 +9,10 @@ Build a profile README in the user's `<login>/<login>` repository. Every visual 
 `scripts/generate.py` from `data/profile.json` plus live GitHub API data. Each SVG carries its own
 light and dark palette, so one file follows the viewer's theme.
 
-Talk to the user in the language they write in. Ask the configuration questions below; decide the
-rest from their data and say what you decided. Read `reference/lessons.md` before step 5.
+Talk to the user in the language they write in. After the theme, they pick a **quick setup** (you
+decide everything from their data and show a preview) or a **custom setup** (they decide content,
+texts and header). Read `reference/lessons.md` before step 5. If they only want to see or bring back
+an earlier version of their profile, go to step 8.
 
 ## Files
 
@@ -19,6 +21,7 @@ rest from their data and say what you decided. Read `reference/lessons.md` befor
 | `scripts/generate.py` | Generator (Python 3.9+, standard library only). Writes `assets/*.svg`, `README.md`, `preview.html`. |
 | `scripts/frames.py` | Animated GIF to transparent sprite sheet, for an animated header (Pillow). |
 | `scripts/cutout.py` | Removes a solid dark background from a still illustration (Pillow + numpy). |
+| `scripts/backup.py` | Backs up the profile repository to `backup/<date>` branches, lists and restores them (git only). |
 | `templates/profile.example.json` | Starting point for `data/profile.json`. |
 | `templates/update-profile.yml` | Optional weekly refresh workflow (needs a `PROFILE_TOKEN` secret). |
 | `templates/gitignore` | Copy as `.gitignore`. |
@@ -54,7 +57,7 @@ Never invent features, numbers or job titles.
 
 ## 3. Configuration questions
 
-### Round 1: style
+### Round 1: style and setup mode
 
 People like a theme that looks like the system or tool they use every day. 13 themes exist:
 
@@ -80,23 +83,54 @@ AskUserQuestion call (an option list holds at most 4 entries, so the style is sp
 1. **Style family**: Terminal and tools / Code editor / Window / Retro. Recommend from what
    step 2 shows: Linux tooling suggests terminal, mostly web code suggests editor or browser,
    databases suggest sql, notebooks suggest notebook, a pixel-art header suggests retro.
-2. **Language** of the README: English / Spanish (`en`, `es`).
-3. **Right side of the header**: an animated GIF / a still image / a neofetch-style info panel
-   (`fetch`) / nothing.
+2. **Setup mode**, explained like an installer's "express or custom" screen:
+   - **Quick (Recommended)**: "I pick your projects, stats and texts from your GitHub data and show
+     you a preview. You approve it, change something, or switch to custom. Nothing is published
+     without your OK."
+   - **Custom**: "You choose the language, featured projects, stats, header image and every text,
+     step by step."
 
-Then one follow-up call, only for the family that needs it:
+Then one follow-up call with what applies (up to four questions):
 
 - Code editor → which one: Editor (VS Code-like) / IDE / Vim / Notebook.
 - Window → which one: Classic (90s) / Windows 11 / macOS / Browser.
 - Terminal and tools → which one: Shell terminal / Database console (`sql`) / Git log (`git`).
 - Retro → Handheld console / CRT amber / CRT green.
-- Shell terminal → which Linux they use, as the accent: Ubuntu / Arch / Debian / Other. On "Other", offer
+- Shell terminal (asked in one more call, since it depends on the answer above) → which Linux they use, as the accent: Ubuntu / Arch / Debian / Other. On "Other", offer
   Fedora / Mint / CachyOS / a plain color (cyan, green, amber or magenta). A distro sets its color and
   shows `user@<distro>` in the title bar.
+
+- Quick → **header image**, the only content question: "I have an animated GIF / I have an image /
+  No, use an info panel". For a file, ask its path next (step 4); with none, build `fetch` from their
+  data (top languages, public repos, years on GitHub, location if public).
+- Custom → **language** of the README (English / Spanish, `en` / `es`) and **right side of the
+  header** (an animated GIF / a still image / a neofetch-style info panel `fetch` / nothing).
 
 Accents are keys of `ACCENTS` in `generate.py`; any of them works with `terminal`, `editor`, `ide`,
 `vim`, `notebook`, `win11`, `macos`, `browser`, `sql` and `git`. `crt` takes a phosphor (`amber`, `green`). `classic` and
 `handheld` have a fixed palette.
+
+### Quick setup: decide, then preview
+
+Skip rounds 2 and 3. Decide with the same rules they use, and list every choice in one short
+message with the preview (step 5):
+
+- Language: the one the user writes in (`en` or `es`; English for any other).
+- Featured work: the top 4 candidates from step 2. Signal tiles: the four strongest in their data.
+- Texts: name and bio from their GitHub profile; role from their bio, company or pinned READMEs,
+  never invented (with nothing to go on, describe what they build: "Full-stack developer").
+  Project labels, descriptions, stacks and statuses from each README. Pills and toolkit from their
+  languages, repository topics and READMEs.
+- Existing README content worth keeping (widget, game): keep it at the bottom and say so.
+- No "Made with" link (offer it in the summary; it is opt-in).
+
+Then ask in one AskUserQuestion call: **Publish this (Recommended)** / **Change something** (they
+say what; apply it and preview again) / **Switch to custom** (ask the language, then continue with
+round 2, keeping the theme and header). Publishing still goes through step 6.
+
+### Custom setup: rounds 2 and 3
+
+Ask these when they chose custom, or switched to it from the quick preview.
 
 ### Round 2: content (one AskUserQuestion call, after drafting from step 2)
 
@@ -162,7 +196,11 @@ and wait for their OK.
 
 Each item is public. List them, ask once, run only what they approve.
 
-1. Commit and push `README.md assets data scripts .gitignore` (any old README stays in git history).
+0. **Backup first, always** (not a choice; say it is included): if the repository already has
+   commits, run `python3 <skill>/scripts/backup.py create` inside the clone before pushing. It saves
+   the profile as it is on GitHub now to a `backup/<date>` branch of the same repository (public,
+   like the repository) and does nothing when that state is already saved. Tell them the branch name.
+1. Commit and push `README.md assets data scripts .gitignore`.
 2. Missing descriptions or topics on the featured repos: `gh repo edit <owner>/<repo> --description "..." --add-topic a,b`.
    If a repo already has a description, ask before replacing it.
 3. Weekly refresh: copy `templates/update-profile.yml` to `.github/workflows/`. It does nothing until
@@ -177,8 +215,27 @@ Only the user can do these (say so; do not try):
 
 - `curl -sI https://raw.githubusercontent.com/<login>/<login>/main/assets/header.svg` returns 200.
 - The profile page shows the README (Ctrl+F5 if images look old; GitHub caches them for minutes).
-- Report what was published, what was skipped, and how to refresh later: edit `data/profile.json`,
-  run `python3 scripts/generate.py`, push. Never edit `README.md` by hand; it is generated.
+- Report what was published, what was skipped, the backup branch, and how to refresh later: edit
+  `data/profile.json`, run `python3 scripts/generate.py`, push. Never edit `README.md` by hand; it is
+  generated. To go back, they can ask you to restore a backup (step 8).
+
+## 8. Backups: list and restore
+
+When the user wants to see earlier versions or go back to one:
+
+1. Clone or update their profile repository (`gh repo clone <login>/<login>`, or `git pull`).
+2. `python3 <skill>/scripts/backup.py list` prints each backup's name, date, theme and last commit
+   message. Show them as a short table and ask which one (AskUserQuestion with up to 4, newest first;
+   more on request).
+3. `python3 <skill>/scripts/backup.py restore <name>` first backs up the current profile, then adds
+   a commit to the default branch with the chosen backup's files. History is never rewritten, so the
+   restore itself can be undone the same way.
+4. Show the restored README (run `python3 scripts/generate.py` for a fresh preview if the backup
+   has `data/profile.json`; its cards will show today's numbers), then ask before
+   `git push origin <default branch>`.
+
+Backups are branches, so deleting old ones is `git push origin --delete backup/<date>`; only do it
+when they ask, naming each branch first.
 
 ## Rules
 
