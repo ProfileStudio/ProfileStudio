@@ -109,8 +109,10 @@ Then one follow-up call with what applies (up to four questions):
 - Quick → **header image**, the only content question: "I have an animated GIF / I have an image /
   No, use an info panel". For a file, ask its path next (step 4); with none, build `fetch` from their
   data (top languages, public repos, years on GitHub, location if public).
-- Custom → **language** of the README (English / Spanish, `en` / `es`) and **right side of the
-  header** (an animated GIF / a still image / a neofetch-style info panel `fetch` / nothing).
+- Custom → **language** of the README (English / Spanish, `en` / `es`), **right side of the
+  header** (an animated GIF / a still image / a neofetch-style info panel `fetch` / nothing) and
+  **colors**: "The theme's own (Recommended)" / "My own accent color" (level 1) / "Fine-tune the
+  theme's colors" (level 2). On either of the last two, follow "Own colors" below.
 
 Accents are keys of `ACCENTS` in `generate.py`; any of them works with `terminal`, `editor`, `ide`,
 `vim`, `notebook`, `win11`, `macos`, `browser`, `sql` and `git`. `crt` takes a phosphor (`amber`, `green`). `classic` and
@@ -156,9 +158,7 @@ Ask these when they chose custom, or switched to it from the quick preview.
    them). Offer one alternative set.
 3. **Existing README content** (only if step 2 found something worth keeping, such as a widget or a
    game): keep it at the bottom (`extra_sections`) / drop it.
-4. **Colors**: "The theme's own (Recommended)" / "My own accent color" (level 1) / "Fine-tune the
-   theme's colors" (level 2). On either of the last two, follow "Own colors" above.
-5. **"Made with" badge**: a small badge at the bottom right, drawn in the profile's own theme,
+4. **"Made with" badge**: a small badge at the bottom right, drawn in the profile's own theme,
    links to this generator. "Keep it (Recommended)" / "Remove it" (`"made_with": false`). Never add
    it as a `credits` line: the generator draws it.
 
