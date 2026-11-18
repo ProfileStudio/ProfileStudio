@@ -104,3 +104,6 @@ Collected while building the first profile with this generator. Each one cost a 
 - **Previewing in a built-in browser pane**: `file://` pages may not be inspectable there. Serve the
   folder with `python3 -m http.server <port> --directory <folder>` (the explicit `--directory`
   avoids serving the wrong folder), started as its own background command, and stop it afterwards.
+- **Forks of the generator lose updates.** A user's agent added its own accents by editing
+  `generate.py`; from then on no fix or feature reached that profile. Colors belong in
+  `profile.json` (`accent` as a color, `theme_overrides`), never in the script.

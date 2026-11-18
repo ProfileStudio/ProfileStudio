@@ -19,12 +19,63 @@ without a UTF-8 BOM.
 | Key | Values | Default |
 |---|---|---|
 | `theme` | `terminal`, `editor`, `ide`, `vim`, `notebook`, `classic`, `win11`, `macos`, `handheld`, `crt`, `browser`, `sql`, `git` | `terminal` |
-| `accent` | a color (`cyan`, `green`, `amber`, `magenta`), a Linux distro (`ubuntu`, `arch`, `debian`, `fedora`, `mint`, `cachyos`) or a system color (`vscode`, `ide`, `notebook`, `win`, `mac`, `browser`, `sql`, `git`). `crt` uses it as phosphor (`amber`, `green`, `cyan`, `magenta`). `classic` and `handheld` ignore it | terminal `cyan`, editor `vscode`, ide `ide`, vim `green`, notebook `notebook`, win11 `win`, macos `mac`, crt `amber`, browser `browser`, sql `sql`, git `git` |
+| `accent` | a color (`cyan`, `green`, `amber`, `magenta`), a Linux distro (`ubuntu`, `arch`, `debian`, `fedora`, `mint`, `cachyos`) or a system color (`vscode`, `ide`, `notebook`, `win`, `mac`, `browser`, `sql`, `git`). Or your own color: `"#ff6600"` (both modes) or `{"light": "#4b5563", "dark": "#d4d8de"}`. `crt` uses it as phosphor (`amber`, `green`, `cyan`, `magenta`). `classic` and `handheld` ignore it | terminal `cyan`, editor `vscode`, ide `ide`, vim `green`, notebook `notebook`, win11 `win`, macos `mac`, crt `amber`, browser `browser`, sql `sql`, git `git` |
 | `host` | host shown as `user@host` in the terminal title bar | the distro of `accent`, else `github` |
 | `lang` | `en`, `es` | `en` |
 | `tiles` | four of `repos`, `contributions`, `prs`, `stars`, `followers`, `production` | `repos`, `contributions`, `prs`, `production` |
 
 `production` counts the featured projects whose `kind` is `prod`.
+
+## Custom colors
+
+Two levels, both in `profile.json`, so `scripts/generate.py` stays the official one and keeps
+receiving updates. Never edit the script to change colors.
+
+**Level 1, your own accent.** `accent` takes a color instead of a name:
+
+```json
+"accent": { "light": "#4b5563", "dark": "#d4d8de" }
+```
+
+The light color is used on light backgrounds and the dark one on dark backgrounds, so pick a dark
+shade for `light` and a light shade for `dark`. A single `"#ff6600"` is used for both.
+
+**Level 2, fine-tune a theme** with `theme_overrides`:
+
+```json
+"theme_overrides": {
+  "color_scheme": "dark",
+  "dark": { "background": "#050505", "titlebar": "#0d0d0f", "panel": "#0b0b0d",
+            "text": "#e8eaed", "muted": "#9aa0a6", "data1": "#f1f3f5" },
+  "light": { "background": "#ffffff" },
+  "languages": { "Python": "#d4d8de" },
+  "css": { "dark": ".frame{stroke-width:2}" }
+}
+```
+
+| Key | Notes |
+|---|---|
+| `color_scheme` | `auto` (default) follows the viewer's GitHub theme. `dark` always draws the dark palette, `light` always the light one. |
+| `light`, `dark` | Colors per mode, by role (below). Only what you list changes. |
+| `languages` | Color of a language in the stack card and project bars, e.g. `{"Python": "#d4d8de"}`. |
+| `css` | Extra CSS for the cards, as a string (both modes) or `{"both", "light", "dark"}`. For effects the roles do not cover. No `<` or `>`, and no nested `@` blocks inside `light` or `dark`. Class names differ between themes: read the theme's style in `generate.py`. |
+
+Roles, the same in every theme:
+
+| Role | What it colors |
+|---|---|
+| `background`, `border` | the window of every card |
+| `titlebar` | the title bar |
+| `panel`, `panel_border` | tiles, pills and chips inside a card |
+| `text`, `muted` | main and secondary text |
+| `lines`, `track` | separators; the empty part of progress bars |
+| `heatmap_empty` | days without contributions |
+| `data1` to `data4` | the four colors of numbers and counters (blue, cyan, purple, green by default) |
+| `status_live`, `status_wip` | the dot of a project in production and of a prototype |
+
+Colors are `#rgb`, `#rrggbb`, `rgb(...)`, `hsl(...)` or a CSS color name. A typo in a key or a
+color stops the run with the list of valid ones. The generator also prints a `contrast warning`
+when text (under 4.5:1), muted text or the accent (under 3:1) is hard to read on the background.
 
 ## Header, right side
 

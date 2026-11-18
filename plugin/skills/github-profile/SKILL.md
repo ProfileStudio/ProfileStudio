@@ -116,6 +116,14 @@ Accents are keys of `ACCENTS` in `generate.py`; any of them works with `terminal
 `vim`, `notebook`, `win11`, `macos`, `browser`, `sql` and `git`. `crt` takes a phosphor (`amber`, `green`). `classic` and
 `handheld` have a fixed palette.
 
+**Own colors.** When the user names colors, a brand or a mood ("black and silver", "my company's
+blue"), do not edit `generate.py`: use `accent` as a color (level 1) and `theme_overrides` (level 2),
+both in `reference/configuration.md`. Propose the palette as hex values for light and dark, ask
+whether it should follow the viewer's theme or always be dark, and fix every `contrast warning` the
+generator prints before the preview. A profile whose `scripts/generate.py` differs from the
+official one (step 2) is a fork: offer to move its color changes into `profile.json` so it gets
+updates again, and say what cannot move (new drawings need code).
+
 ### Quick setup: decide, then preview
 
 Skip rounds 2 and 3. Decide with the same rules they use, and list every choice in one short
@@ -148,7 +156,9 @@ Ask these when they chose custom, or switched to it from the quick preview.
    them). Offer one alternative set.
 3. **Existing README content** (only if step 2 found something worth keeping, such as a widget or a
    game): keep it at the bottom (`extra_sections`) / drop it.
-4. **"Made with" badge**: a small badge at the bottom right, drawn in the profile's own theme,
+4. **Colors**: "The theme's own (Recommended)" / "My own accent color" (level 1) / "Fine-tune the
+   theme's colors" (level 2). On either of the last two, follow "Own colors" above.
+5. **"Made with" badge**: a small badge at the bottom right, drawn in the profile's own theme,
    links to this generator. "Keep it (Recommended)" / "Remove it" (`"made_with": false`). Never add
    it as a `credits` line: the generator draws it.
 

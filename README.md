@@ -127,6 +127,18 @@ Then set in `profile.json`: `"portrait": "data/portrait-sheet.png"`,
 
 For a still image on a solid dark background, `scripts/cutout.py` removes the background.
 
+## Your own colors
+
+Change colors in `data/profile.json`, without touching the script, so you keep getting updates:
+
+- **Your own accent**: `"accent": {"light": "#4b5563", "dark": "#d4d8de"}` (or a single `"#ff6600"`).
+- **Fine-tune a theme**: `theme_overrides` sets background, title bar, panels, text, the colors of
+  numbers, language colors and extra CSS, per mode. `"color_scheme": "dark"` keeps it dark for
+  everyone.
+
+The generator warns when a color is hard to read. All keys:
+[`configuration.md`](plugin/skills/github-profile/reference/configuration.md#custom-colors).
+
 ## How it works
 
 - `generate.py` calls the GitHub REST and GraphQL APIs through your `gh` login and writes plain SVG

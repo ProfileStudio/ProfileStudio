@@ -129,6 +129,19 @@ Luego, en `profile.json`: `"portrait": "data/portrait-sheet.png"`,
 
 Para una imagen fija con fondo oscuro sólido, `scripts/cutout.py` quita el fondo.
 
+## Tus propios colores
+
+Los colores se cambian en `data/profile.json`, sin tocar el script, así sigues recibiendo las
+actualizaciones:
+
+- **Acento propio**: `"accent": {"light": "#4b5563", "dark": "#d4d8de"}` (o un solo `"#ff6600"`).
+- **Ajustar un tema**: `theme_overrides` define fondo, barra de título, paneles, textos, colores de
+  las cifras, colores de lenguajes y CSS adicional, por modo. `"color_scheme": "dark"` lo deja
+  siempre oscuro.
+
+El generador avisa cuando un color se lee mal. Todas las claves (en inglés):
+[`configuration.md`](plugin/skills/github-profile/reference/configuration.md#custom-colors).
+
 ## Cómo funciona
 
 - `generate.py` consulta las API REST y GraphQL de GitHub con tu sesión de `gh` y escribe archivos
