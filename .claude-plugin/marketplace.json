@@ -1,13 +1,13 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-  "name": "github-profile-readme-generator",
-  "description": "Builds an animated GitHub profile README from your real GitHub data, after a few design questions.",
+  "name": "profilestudio",
+  "description": "ProfileStudio: everything you need to build, customize and maintain your GitHub profile.",
   "owner": {
     "name": "Walther Mora Rivera"
   },
   "plugins": [
     {
-      "name": "github-profile",
+      "name": "profilestudio",
       "source": "./plugin",
       "description": "Design, preview and publish a GitHub profile README: SVG cards with live stats, 13 themes inspired by developer tools, editors, browsers, databases, git, operating systems and retro screens, light and dark modes, an optional animated header from your own image or GIF, quick or custom setup, and restorable backups."
     }

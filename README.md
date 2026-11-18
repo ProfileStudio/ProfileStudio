@@ -1,4 +1,6 @@
-# GitHub Profile README Generator
+# ProfileStudio
+
+**Everything you need to build, customize and maintain your GitHub profile.**
 
 **English** · [Español](README.es.md)
 
@@ -13,9 +15,9 @@ approve. No Claude? The generator is a single Python script with no dependencies
 
 ## Live example
 
-<a href="https://github.com/WaltherMoraRivera"><img src="https://raw.githubusercontent.com/WaltherMoraRivera/WaltherMoraRivera/main/assets/header.svg" width="100%" alt="Header of github.com/WaltherMoraRivera: terminal theme, cyan accent, animated pixel-art portrait"></a>
+<a href="https://github.com/WaltherMoraRivera"><img src="https://raw.githubusercontent.com/WaltherMoraRivera/WaltherMoraRivera/main/assets/header.svg" width="100%" alt="Header of github.com/WaltherMoraRivera: git theme, animated pixel-art portrait"></a>
 
-[github.com/WaltherMoraRivera](https://github.com/WaltherMoraRivera): terminal theme, Spanish, animated pixel-art portrait.
+[github.com/WaltherMoraRivera](https://github.com/WaltherMoraRivera): git theme, Spanish, animated pixel-art portrait.
 
 ## 13 themes, inspired by the tools you use every day
 
@@ -49,15 +51,15 @@ keep a fixed palette. Themes are inspired by these systems and use no logos.
 - **Selected work**: four project cards with description, stack, status, commit count, last push
   and language split.
 - **Language stack** by bytes of code, and your **toolkit** grouped by area.
-- **Contribution heatmap** for the last 52 weeks, with active weeks and longest streak.
+- **Contribution heatmap** for the last 52 weeks, with active weeks, current and longest streak.
 - English or Spanish, `README.md` generated from one `profile.json`, and an optional weekly
   refresh workflow.
 
 ## Quick start with Claude Code
 
 ```text
-/plugin marketplace add WaltherMoraRivera/github-profile-readme-generator
-/plugin install github-profile@github-profile-readme-generator
+/plugin marketplace add ProfileStudio/ProfileStudio
+/plugin install profilestudio@profilestudio
 ```
 
 Then just say **"set up my GitHub profile"**. The agent:
@@ -90,19 +92,19 @@ python3 path/to/scripts/backup.py restore 2026-11-15-1030 && git push
 You need Python 3.9+ and the [GitHub CLI](https://cli.github.com) signed in (`gh auth login`).
 
 ```bash
-git clone https://github.com/WaltherMoraRivera/github-profile-readme-generator
+git clone https://github.com/ProfileStudio/ProfileStudio
 gh repo create <you>/<you> --public --clone     # or clone it if it already exists
 cd <you>
 mkdir -p scripts data
-cp ../github-profile-readme-generator/plugin/skills/github-profile/scripts/generate.py scripts/
-cp ../github-profile-readme-generator/plugin/skills/github-profile/templates/profile.example.json data/profile.json
-cp ../github-profile-readme-generator/plugin/skills/github-profile/templates/gitignore .gitignore
+cp ../ProfileStudio/plugin/skills/github-profile/scripts/generate.py scripts/
+cp ../ProfileStudio/plugin/skills/github-profile/templates/profile.example.json data/profile.json
+cp ../ProfileStudio/plugin/skills/github-profile/templates/gitignore .gitignore
 # edit data/profile.json, then:
 python3 scripts/generate.py
 ```
 
 Open `preview.html` to check it. If you already had a profile, save it first with
-`python3 ../github-profile-readme-generator/plugin/skills/github-profile/scripts/backup.py create`,
+`python3 ../ProfileStudio/plugin/skills/github-profile/scripts/backup.py create`,
 then commit and push `README.md assets data scripts .gitignore`.
 A public repository named exactly like your account is shown on your profile page.
 
